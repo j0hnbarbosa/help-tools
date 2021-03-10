@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="stylesheet/styles.css">
+
+  <title>Estátistica Ferramentas</title>
+
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="container-textarea">
+      <textarea id="text-input" class="text-input-class"></textarea>
+
+      <div class="btn-container-click">
+        <button class="button-click" onclick="getvalue()">Calculate Frequence</button>
+      </div>
+
+      <h1>FREQUENCE:</h1>
+      <div id="new-values"></div>
+
+
+    </div>
+
+    <div class="container-inputs-times">
+      <div class="container-actions">
+        <input type="text" class="input-times" placeholder="any value" name="inputyourtext" />
+        <input type="number" min="0" class="input-times" placeholder="times it must appear" name="numberoutputs" />
+        <button class="button-click" onclick="onGenerateValues()">Generate</button>
+      </div>
+
+      <div class='container-button-action'>
+        <button class="button-click-add" onclick="onAddToTextArea()">Add to text area</button>
+
+          <button onclick="onCopyText()" class="button-click-add" onmouseout="outFunc()">
+            <span class="tooltiptext" id="myTooltip">Copy to clipboard</span>
+          </button>
+
+      </div>
+
+      <div class="container-text-output">
+        <div id="text-output"></div>
+      </div>
+
+    </div>
+
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"></script>
+  <script src="scripts/utils.js"></script>
+
+</html>

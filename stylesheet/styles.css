@@ -1,0 +1,178 @@
+body,
+input,
+textarea,
+button,
+div,
+span {
+  font-family: roboto;
+}
+
+body {
+  padding: 25px;
+}
+
+textarea {
+  min-height: 390px;
+  resize: none;
+  resize: vertical;
+  color: #102027
+}
+
+button {
+  color: #34515E;
+  border: 1px solid #CECECE;
+  background: #FEFEFE;
+  outline: none;
+  padding: 5px;
+  cursor: pointer;
+  text-transform: uppercase;
+  border-radius: 6px;
+  font-weight: 600;
+  height: 28px;
+}
+
+button:hover {
+  border-color: #E6E6E6;
+  background: #F2F2F2;
+}
+
+input {
+  height: 26px;
+  outline: none;
+  border: 1px solid #CECECE;
+  border-radius: 5px;
+  padding: 3px 6px;
+  margin: 0;
+}
+
+table,
+td,
+tr,
+th {
+  text-align: center;
+}
+
+.text-input-class {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  border: 1px solid #CECECE;
+}
+
+.container-textarea {
+  width: 400px;
+  height: 350px;
+}
+
+.btn-container-click {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#new-values {
+  padding: 25px;
+}
+
+.container {
+  display: flex;
+
+  height: 350px;
+}
+
+.container-inputs-times {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  width: 500px;
+}
+
+.input-times {
+  margin-right: 10px;
+}
+
+.container-text-output {
+  position: relative;
+}
+
+#text-output {
+  margin-top: 15px;
+  font-size: 12px;
+  word-break: break-all;
+  position: absolute;
+  max-height: 490px;
+  overflow: auto;
+  overflow-x: hidden;
+}
+
+
+
+.button-click-add {
+  width: 220px;
+  margin: 10px 0;
+}
+
+.container-button-action {
+  display: flex;
+}
+
+.container-button-action button:first-child {
+  margin-right: 10px;
+}
+
+@media (max-width: 750px) {
+  .container-actions {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+
+  .input-times {
+    margin-right: 0px;
+    margin-bottom: 10px;
+  }
+
+  .container-button-action {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 140px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 150%;
+  left: 50%;
+  margin-left: -75px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
