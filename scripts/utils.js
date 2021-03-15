@@ -24,6 +24,7 @@ const getvalue = () => {
     valueTextArea = _.filter(valueTextArea, (v) => v !== '');
 
     let total = 0;
+    let totalPercentage = 0;
 
     if (valueTextArea && valueTextArea.length > 0) {
       const grouped = _.groupBy(valueTextArea, (v) => v);
@@ -31,13 +32,17 @@ const getvalue = () => {
 
       _.forEach(keys, (k) => { total += grouped[k].length });
 
-      const formatValue = _.map(keys, (k) => (
+      const formatValue = _.map(keys, (k) => {
+        const resuPerce = ((grouped[k].length / total) * 100);
+        totalPercentage += parseFloat(resuPerce, 10);
+
+        return (
         `<tr>
           <td>${k}</td>
           <td>${grouped[k].length}</td>
-          <td>${Math.floor((grouped[k].length / total) * 100)}</td>
+          <td>${resuPerce.toFixed(2)}</td>
           </tr>
-          `)
+          `)}
       )
 
       const tableFormat = `<table>
@@ -50,6 +55,11 @@ const getvalue = () => {
                           </thead>
                           <tbody>
                             ${formatValue.join(" ")}
+                            <tr>
+                              <td>TOTAL</td>
+                              <td>${valueTextArea.length}</td>
+                              <td>${totalPercentage.toFixed(2)}</td>
+                            </tr>
                           </tbody>                          
                          </table>
                       `
