@@ -170,3 +170,7 @@ th {
     margin-bottom: 5px;
   }
 }
+
+.total {
+  font-weight: 500;
+}

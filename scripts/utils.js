@@ -55,7 +55,7 @@ const getvalue = () => {
                           </thead>
                           <tbody>
                             ${formatValue.join(" ")}
-                            <tr>
+                            <tr class="total">
                               <td>TOTAL</td>
                               <td>${valueTextArea.length}</td>
                               <td>${totalPercentage.toFixed(2)}</td>
