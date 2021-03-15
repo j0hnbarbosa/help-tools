@@ -3,6 +3,8 @@ const warnigText = 'Enter some values in the inputs and press GENERATE';
 const textArea = document.getElementById("text-input");
 const newValues = document.getElementById("new-values");
 const textOutput = document.getElementById("text-output");
+const getInputText = document.getElementById("inputyourtext");
+const getInputNumber = document.getElementById("numberoutputs");
 
 const textIsEmpty = () => {
   if (!_.isEmpty(textOutput.innerHTML) && textOutput.innerHTML !== warnigText) {
@@ -20,7 +22,7 @@ const getvalue = () => {
     .replace(/ +/g, ' ')
 
   if (!_.isEmpty(valueTextArea)) {
-    valueTextArea = valueTextArea.split(' ');
+    valueTextArea = _.sortBy(valueTextArea.split(' '));
     valueTextArea = _.filter(valueTextArea, (v) => v !== '');
 
     let total = 0;
@@ -71,11 +73,15 @@ const getvalue = () => {
 
 const clearValue = () => {
   textArea.value = '';
+  newValues.innerHTML = '';
+  textOutput.innerHTML = '';
+  getInputText.value= '';
+  getInputNumber.value = '';
 }
 
 const onGenerateValues = () => {
-  const inputyourtext = _.head(document.getElementsByName("inputyourtext")).value;
-  const numberoutputs = _.head(document.getElementsByName("numberoutputs")).value;
+  const inputyourtext = getInputText.value;
+  const numberoutputs = getInputNumber.value;
 
   if (!_.isEmpty(inputyourtext) && !_.isEmpty(numberoutputs)) {
     let values = ""
