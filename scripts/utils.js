@@ -14,17 +14,14 @@ const textIsEmpty = () => {
 const getvalue = () => {
   let valueTextArea = textArea.value
     .trim()
+    .replace(/\t+/g, ' ')
+    .replace(/\n/g, ' ')
+    .replace(/,/g, ' ')
     .replace(/ +/g, ' ')
-    .replace(/\n/g, '')
-    .replace(/,/g, ".")
-
-  console.log(valueTextArea);
 
   if (!_.isEmpty(valueTextArea)) {
     valueTextArea = valueTextArea.split(' ');
     valueTextArea = _.filter(valueTextArea, (v) => v !== '');
-
-    console.log(valueTextArea);
 
     let total = 0;
 
@@ -57,13 +54,14 @@ const getvalue = () => {
                          </table>
                       `
 
-      console.log(tableFormat)
-
       newValues.innerHTML = tableFormat;
     }
   }
 };
 
+const clearValue = () => {
+  textArea.value = '';
+}
 
 const onGenerateValues = () => {
   const inputyourtext = _.head(document.getElementsByName("inputyourtext")).value;
@@ -107,7 +105,24 @@ const onCopyText = () => {
 }
 
 const outFunc = () => {
-  var tooltip = document.getElementById("myTooltip");
+  let tooltip = document.getElementById("myTooltip");
   tooltip.innerHTML = "Copy to clipboard";
 
+}
+
+const openTab = (evt, tab) => {
+  let i, x, tablinks;
+
+  x = document.getElementsByClassName("tab-column");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < x.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" selected-tab", "");
+  }
+
+  document.getElementById(tab).style.display = "block";
+  evt.currentTarget.className += " selected-tab";
 }

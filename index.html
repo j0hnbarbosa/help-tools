@@ -14,44 +14,65 @@
 </head>
 
 <body>
-  <div class="container">
 
-    <div class="container-textarea">
-      <textarea id="text-input" class="text-input-class"></textarea>
+  <div class="container-tab">
+    <button class="tablinks selected-tab" onclick="openTab(event,'tab_1')">TAB 1</button>
+    <button class="tablinks" onclick="openTab(event,'tab_2')">TAB 2</button>
+    <button class="tablinks" onclick="openTab(event,'tab_3')">TAB 3</button>
+  </div>
 
-      <div class="btn-container-click">
-        <button class="button-click" onclick="getvalue()">Calculate Frequence</button>
+  <div id="tab_1" class="tab-column">
+    <div class="container">
+
+      <div class="container-textarea">
+        <textarea id="text-input" class="text-input-class"></textarea>
+
+        <div class="btn-container-click">
+          <button class="button-click clear-btn" onclick="clearValue()">Clear</button>
+          <button class="button-click" onclick="getvalue()">Calculate Frequence</button>
+        </div>
+
+        <h1>FREQUENCE:</h1>
+        <div id="new-values"></div>
+
+
       </div>
 
-      <h1>FREQUENCE:</h1>
-      <div id="new-values"></div>
+      <div class="container-inputs-times">
+        <div class="container-actions">
+          <input type="text" class="input-times" placeholder="any value" name="inputyourtext" />
+          <input type="number" min="0" class="input-times" placeholder="times it must appear" name="numberoutputs" />
+          <button class="button-click" onclick="onGenerateValues()">Generate</button>
+        </div>
 
-
-    </div>
-
-    <div class="container-inputs-times">
-      <div class="container-actions">
-        <input type="text" class="input-times" placeholder="any value" name="inputyourtext" />
-        <input type="number" min="0" class="input-times" placeholder="times it must appear" name="numberoutputs" />
-        <button class="button-click" onclick="onGenerateValues()">Generate</button>
-      </div>
-
-      <div class='container-button-action'>
-        <button class="button-click-add" onclick="onAddToTextArea()">Add to text area</button>
+        <div class='container-button-action'>
+          <button class="button-click-add" onclick="onAddToTextArea()">Add to text area</button>
 
           <button onclick="onCopyText()" class="button-click-add" onmouseout="outFunc()">
             <span id="myTooltip">Copy to clipboard</span>
           </button>
 
-      </div>
+        </div>
 
-      <div class="container-text-output">
-        <div id="text-output"></div>
+        <div class="container-text-output">
+          <div id="text-output"></div>
+        </div>
+
       </div>
 
     </div>
+  </div>
 
+  <div id="tab_2" class="tab-column" style="display:none">
+    <div class="container">
+      TAB 2
+    </div>
+  </div>
 
+  <div id="tab_3" class="tab-column" style="display:none">
+    <div class="container">
+      TAB 3
+    </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"></script>

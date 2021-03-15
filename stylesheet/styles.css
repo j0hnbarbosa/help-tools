@@ -8,7 +8,7 @@ span {
 }
 
 body {
-  padding: 25px;
+  margin: 10px 25px;
 }
 
 textarea {
@@ -137,4 +137,36 @@ th {
     margin-bottom: 10px;
   }
 
+}
+
+.selected-tab {
+  color: #FFF;
+  background-color: #4CAF50;
+}
+
+.container-tab {
+  margin-bottom: 10px;
+}
+
+.clear-btn {
+  color: #FFF;
+  background-color: #F44336;
+  margin-right: 5px;
+}
+
+.clear-btn:hover {
+  color: #34515E;
+}
+
+@media (max-width: 600px) {
+  .btn-container-click {
+    display: flex;
+    flex-direction: column;
+  }
+  .clear-btn {
+    color: #FFF;
+    background-color: #F44336;
+    margin: 0;
+    margin-bottom: 5px;
+  }
 }
