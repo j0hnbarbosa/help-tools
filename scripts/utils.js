@@ -1,11 +1,5 @@
 const warnigText = 'Enter some values in the inputs and press GENERATE';
 
-const textArea = document.getElementById("text-input");
-const newValues = document.getElementById("new-values");
-const textOutput = document.getElementById("text-output");
-const getInputText = document.getElementById("inputyourtext");
-const getInputNumber = document.getElementById("numberoutputs");
-
 const textIsEmpty = () => {
   if (!_.isEmpty(textOutput.innerHTML) && textOutput.innerHTML !== warnigText) {
     return true;
@@ -13,17 +7,30 @@ const textIsEmpty = () => {
   return false;
 }
 
+const onTextAreaChangeValue = () => {
+  if(onlyNumber.checked && textArea.value) {
+    textArea.value = textArea.value.replace(/([^ .\d])/gi, '');
+  }
+};
+
 const getvalue = () => {
   let valueTextArea = textArea.value
     .trim()
     .replace(/\t+/g, ' ')
-    .replace(/\n/g, ' ')
-    .replace(/,/g, ' ')
+    .replace(/\n+/g, ' ')
+    .replace(/,+/g, ' ')
     .replace(/ +/g, ' ')
 
   if (!_.isEmpty(valueTextArea)) {
+    if(onlyNumber.checked) {
+      valueTextArea = valueTextArea.replace(/([^ .\d])/gi, '');
+    }
+
+
     valueTextArea = _.sortBy(valueTextArea.split(' '));
     valueTextArea = _.filter(valueTextArea, (v) => v !== '');
+
+    onCaculateMediaMedianaModa(valueTextArea);
 
     let total = 0;
     let totalPercentage = 0;
@@ -39,12 +46,13 @@ const getvalue = () => {
         totalPercentage += parseFloat(resuPerce, 10);
 
         return (
-        `<tr>
+          `<tr>
           <td>${k}</td>
           <td>${grouped[k].length}</td>
           <td>${resuPerce.toFixed(2)}</td>
           </tr>
-          `)}
+          `)
+      }
       )
 
       const tableFormat = `<table>
@@ -75,8 +83,14 @@ const clearValue = () => {
   textArea.value = '';
   newValues.innerHTML = '';
   textOutput.innerHTML = '';
-  getInputText.value= '';
+  getInputText.value = '';
   getInputNumber.value = '';
+
+  mediaOutputCalc.innerHTML = '';
+  mediaResultmediaOutputCalc.innerHTML = '';
+  modaResultmediaOutputCalc.innerHTML = '';
+  medianaResultmediaOutputCalc.innerHTML = '';
+  tableModaResultmediaOutputCalc.innerHTML = '';
 }
 
 const onGenerateValues = () => {
@@ -94,9 +108,69 @@ const onGenerateValues = () => {
 
 }
 
+const calculateMedia = (valuesNumber) => {
+  if (valuesNumber) {
+
+    mediaOutputCalc.innerHTML = `(${valuesNumber.join(" + ")})/${valuesNumber.length}`;
+    mediaResult.innerHTML = (_.reduce(valuesNumber, (total, amount) => total + amount) / valuesNumber.length).toFixed(2)
+  }
+}
+
+const caculateModa = (valuesNumber) => {
+  let mostFrequent = [];
+  const grouped = _.groupBy(valuesNumber, (v) => v);
+
+  _.forEach(grouped, (v) => {
+    if (_.isEmpty(mostFrequent)) {
+      mostFrequent.push({ value: _.head(v), freq: v.length });
+    } else if (_.head(mostFrequent).freq === v.length) {
+      // If there are values that have the same frequence
+      mostFrequent.push({ value: _.head(v), freq: v.length });
+    } else if (_.head(mostFrequent).freq < v.length) {
+      mostFrequent = [];
+      mostFrequent.push({ value: _.head(v), freq: v.length });
+    }
+  });
+  if (!_.isEmpty(mostFrequent)) {
+    tableModaResult.innerHTML = `
+      <tr>
+        <th>Value</th><th>Freq</th>
+      </tr>
+      ${_.chain(mostFrequent)
+        .map(v => (`<tr>
+                        <td>${v.value}</td><td>${v.freq}</td>
+                  </tr>`))
+        .join(' ').value()}
+    `
+
+
+    modaResult.innerHTML = _.chain(mostFrequent).map('value').join(" ").value();
+  }
+
+}
+
+const caculateMediana = (valuesNumber) => {
+  let resu = '';
+  const middlePos = Math.floor(valuesNumber.length / 2);
+  if (valuesNumber.length % 2 === 0) {
+    const firstNum = valuesNumber[middlePos - 1];
+    const secondNum = valuesNumber[middlePos];
+    resu = ((firstNum + secondNum) / 2).toFixed(2)
+  } else {
+    resu = valuesNumber[middlePos];
+  }
+
+  medianaResult.innerHTML = resu;
+};
+
+const onCaculateMediaMedianaModa = (valuesNumber) => {
+  const orderedValues = _.chain(valuesNumber).map((value) => parseInt(value, 10)).sortBy().value();
+  calculateMedia(orderedValues);
+  caculateModa(orderedValues);
+  caculateMediana(orderedValues);
+};
+
 const onAddToTextArea = () => {
-
-
   if (textIsEmpty()) {
     const addText = `${textArea.value} ${textOutput.innerHTML}`;
     textArea.value = addText;

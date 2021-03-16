@@ -23,17 +23,78 @@
   </div>
 
   <div id="tab_1" class="tab-column">
+    <div class="container-chk-only-number">
+      <input type="checkbox" id="onlynumber" name="onlynumber" checked>
+      <label for="onlynumber" class="onlynumber-label">Only Numbers</label>
+    </div>
+
     <div class="container">
 
+
       <div class="container-textarea">
-        <textarea id="text-input" class="text-input-class"></textarea>
+        <textarea 
+          id="text-input" 
+          class="text-input-class" 
+          onchange="onTextAreaChangeValue"></textarea>
 
         <div class="btn-container-click">
           <button class="button-click clear-btn" onclick="clearValue()">Clear</button>
           <button class="button-click" onclick="getvalue()">Calculate Frequence</button>
         </div>
 
-        <h1>FREQUENCE:</h1>
+        <h2>Média, Moda e Mediana</h2>
+        <div>
+          <h3>Média:</h3>
+          <div id="media-output-calc">
+            (4 + 5 + 6 + 6 + 7 + 7 + 8 + 8 + 8 + 9 + 9 + 12 + 12 + 45)/14
+          </div>
+          <div class="space-top">
+            <span>Média: <strong id="media-result">10.4</strong></span>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div>
+          <h3>Mediana:</h3>
+          <div>
+            4 5 6 6 7 7 |8 8| 8 9 9 12 12 45
+          </div>
+          <div>
+            8 + 8 / 2 = 4
+          </div>
+          <div class="space-top">
+            <span>Mediana: <strong id="mediana-result">4</strong></span>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div>
+          <h3>Moda</h3>
+          <div>
+            <table id='table-moda-result'>
+              <tr>
+                <th>Value</th>
+                <th>Freq</th>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td>3</td>
+              </tr>
+            </table>
+            <div class="space-top">
+              <span>Moda: <strong id="moda-result">8</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+
+        <div id="new-values-medias"></div>
+
+        <h2>FREQUENCE:</h2>
         <div id="new-values"></div>
 
 
@@ -42,7 +103,8 @@
       <div class="container-inputs-times">
         <div class="container-actions">
           <input type="text" class="input-times" placeholder="any value" name="inputyourtext" id="inputyourtext" />
-          <input type="number" min="0" class="input-times" placeholder="times it must appear" name="numberoutputs" id="numberoutputs" />
+          <input type="number" min="0" class="input-times" placeholder="times it must appear" name="numberoutputs"
+            id="numberoutputs" />
           <button class="button-click" onclick="onGenerateValues()">Generate</button>
         </div>
 
@@ -77,6 +139,7 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"></script>
+  <script src="scripts/getElementById.js"></script>
   <script src="scripts/utils.js"></script>
 
 </html>

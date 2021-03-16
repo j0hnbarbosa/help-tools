@@ -3,6 +3,7 @@ input,
 textarea,
 button,
 div,
+label,
 span {
   font-family: roboto;
 }
@@ -62,6 +63,7 @@ th {
 .container-textarea {
   width: 400px;
   height: 350px;
+  min-width: 200px;
 }
 
 .btn-container-click {
@@ -173,4 +175,25 @@ th {
 
 .total {
   font-weight: 500;
+}
+
+.divider {
+  margin: 10px 0;
+  border-top: 1px solid #BBB;
+}
+
+.space-top {
+  margin-top: 10px;
+}
+
+.container-chk-only-number {
+  display: flex;
+  align-items: center;
+}
+
+.onlynumber-label {
+  cursor: pointer;
+  margin-left: 5px;
+  color: #34515E;
+  font-size: 14px;
 }
