@@ -8,7 +8,7 @@ const textIsEmpty = () => {
 }
 
 const onTextAreaChangeValue = () => {
-  if(onlyNumber.checked && textArea.value) {
+  if (onlyNumber.checked && textArea.value) {
     textArea.value = textArea.value.replace(/([^ .\d])/gi, '');
   }
 };
@@ -22,7 +22,7 @@ const getvalue = () => {
     .replace(/ +/g, ' ')
 
   if (!_.isEmpty(valueTextArea)) {
-    if(onlyNumber.checked) {
+    if (onlyNumber.checked) {
       valueTextArea = valueTextArea.replace(/([^ .\d])/gi, '');
     }
 
@@ -87,10 +87,15 @@ const clearValue = () => {
   getInputNumber.value = '';
 
   mediaOutputCalc.innerHTML = '';
-  mediaResultmediaOutputCalc.innerHTML = '';
-  modaResultmediaOutputCalc.innerHTML = '';
-  medianaResultmediaOutputCalc.innerHTML = '';
-  tableModaResultmediaOutputCalc.innerHTML = '';
+  mediaResult.innerHTML = '';
+
+  modaResult.innerHTML = '';
+  tableModaResult.innerHTML = '';
+
+  medianaResult.innerHTML = '';
+  medianaOutputCalc.innerHTML = '';
+  medianaOutput.innerHTML = '';
+
 }
 
 const onGenerateValues = () => {
@@ -151,23 +156,33 @@ const caculateModa = (valuesNumber) => {
 
 const caculateMediana = (valuesNumber) => {
   let resu = '';
+  let mediaValuePos = '';
+  let calcMediana = '';
   const middlePos = Math.floor(valuesNumber.length / 2);
   if (valuesNumber.length % 2 === 0) {
     const firstNum = valuesNumber[middlePos - 1];
     const secondNum = valuesNumber[middlePos];
     resu = ((firstNum + secondNum) / 2).toFixed(2)
+    mediaValuePos = `${valuesNumber.splice(0, middlePos - 1).join(' ')} | ${firstNum} ${secondNum} | ${valuesNumber.splice(2, valuesNumber.length).join(' ')}`;
+    calcMediana = `(${firstNum} + ${secondNum}) / 2 = ${resu}`;
   } else {
     resu = valuesNumber[middlePos];
+    mediaValuePos = `${valuesNumber.splice(0, middlePos).join(' ')} | ${resu} | ${valuesNumber.splice(1, valuesNumber.length).join(' ')}`;
   }
 
   medianaResult.innerHTML = resu;
+  medianaOutput.innerHTML = mediaValuePos;
+
+  medianaOutputCalc.innerHTML = calcMediana;
 };
 
 const onCaculateMediaMedianaModa = (valuesNumber) => {
-  const orderedValues = _.chain(valuesNumber).map((value) => parseInt(value, 10)).sortBy().value();
-  calculateMedia(orderedValues);
-  caculateModa(orderedValues);
-  caculateMediana(orderedValues);
+  if (onlyNumber.checked) {
+    const orderedValues = _.chain(valuesNumber).map((value) => parseInt(value, 10)).sortBy().value();
+    calculateMedia(orderedValues);
+    caculateModa(orderedValues);
+    caculateMediana(orderedValues);
+  }
 };
 
 const onAddToTextArea = () => {
