@@ -22,6 +22,12 @@ p {
   color: #102027
 }
 
+.container-page {
+  max-width: 1500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 textarea {
   min-height: 390px;
   resize: none;
@@ -241,4 +247,22 @@ th {
 .mansory-grid > div {
   grid-row: 1 / -1;
   grid-column: 1;
+}
+
+.center-content {
+  display: flex;
+  justify-content: center;
+}
+
+.th-style {
+  border-top: 1px solid #BBB;
+  border-bottom: 1px solid #BBB;
+}
+
+.td-style {
+  border-top: 1px solid #BBB;
+}
+
+.td-right-border {
+  border-right: 1px solid #BBB;
 }

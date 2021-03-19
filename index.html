@@ -16,222 +16,304 @@
 
 <body>
 
-  <div class="container-tab">
-    <button class="tablinks" onclick="openTab(event,'tab_1')">TAB 1</button>
-    <button class="tablinks selected-tab" onclick="openTab(event,'tab_2')">TAB 2</button>
-    <button class="tablinks" onclick="openTab(event,'tab_3')">TAB 3</button>
-  </div>
-
-  <div id="tab_1" class="tab-column" style="display:none">
-    <div class="container-chk-only-number">
-      <input type="checkbox" id="onlynumber" name="onlynumber" checked>
-      <label for="onlynumber" class="onlynumber-label">Only Numbers</label>
+  <div class="container-page">
+    <div class="container-tab">
+      <button class="tablinks" onclick="openTab(event,'tab_1')">TAB 1</button>
+      <button class="tablinks selected-tab" onclick="openTab(event,'tab_2')">TAB 2</button>
+      <button class="tablinks" onclick="openTab(event,'tab_3')">TAB 3</button>
     </div>
 
-    <div class="container">
+    <div id="tab_1" class="tab-column" style="display:none">
+      <div class="container-chk-only-number">
+        <input type="checkbox" id="onlynumber" name="onlynumber" checked>
+        <label for="onlynumber" class="onlynumber-label">Only Numbers</label>
+      </div>
+
+      <div class="container">
 
 
-      <div class="container-textarea">
-        <textarea id="text-input" class="text-input-class" onchange="onTextAreaChangeValue"></textarea>
+        <div class="container-textarea">
+          <textarea id="text-input" class="text-input-class" onchange="onTextAreaChangeValue"></textarea>
 
-        <div class="btn-container-click">
-          <button class="button-click clear-btn" onclick="clearValue()">Clear</button>
-          <button class="button-click" onclick="getvalue()">Calculate Frequence</button>
-        </div>
-
-        <div id="media-moda-mediana-container" style="display: none">
-          <h2>Média, Mediana e Moda</h2>
-          <div>
-            <h3>Média:</h3>
-            <div id="media-output-calc"></div>
-            <div class="space-top">
-              <span>Média: <strong id="media-result"></strong></span>
-            </div>
+          <div class="btn-container-click">
+            <button class="button-click clear-btn" onclick="clearValue()">Clear</button>
+            <button class="button-click" onclick="getvalue()">Calculate Frequence</button>
           </div>
 
-          <div class="divider"></div>
-
-          <div>
-            <h3>Mediana:</h3>
-            <div id='mediana-output'></div>
-            <div id='mediana-output-calc'></div>
-            <div class="space-top">
-              <span>Mediana: <strong id="mediana-result"></strong></span>
-            </div>
-          </div>
-
-          <div class="divider"></div>
-
-          <div>
-            <h3>Moda</h3>
+          <div id="media-moda-mediana-container" style="display: none">
+            <h2>Média, Mediana e Moda</h2>
             <div>
-              <table id='table-moda-result'></table>
+              <h3>Média:</h3>
+              <div id="media-output-calc"></div>
               <div class="space-top">
-                <span>Moda: <strong id="moda-result"></strong></span>
+                <span>Média: <strong id="media-result"></strong></span>
               </div>
             </div>
+
+            <div class="divider"></div>
+
+            <div>
+              <h3>Mediana:</h3>
+              <div id='mediana-output'></div>
+              <div id='mediana-output-calc'></div>
+              <div class="space-top">
+                <span>Mediana: <strong id="mediana-result"></strong></span>
+              </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div>
+              <h3>Moda</h3>
+              <div>
+                <table id='table-moda-result'></table>
+                <div class="space-top">
+                  <span>Moda: <strong id="moda-result"></strong></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div id="new-values-medias"></div>
+
           </div>
 
-          <div class="divider"></div>
+          <div id="frequence-container" style="display: none;">
+            <h2>FREQUENCE:</h2>
+            <div id="new-values"></div>
+          </div>
+        </div>
 
-          <div id="new-values-medias"></div>
+        <div class="container-inputs-times">
+          <div class="container-actions">
+            <input type="text" class="input-times" placeholder="any value" name="inputyourtext" id="inputyourtext" />
+            <input type="number" min="0" class="input-times" placeholder="times it must appear" name="numberoutputs"
+              id="numberoutputs" />
+            <button class="button-click" onclick="onGenerateValues()">Generate</button>
+          </div>
+
+          <div class='container-button-action'>
+            <button class="button-click-add" onclick="onAddToTextArea()">Add to text area</button>
+
+            <button onclick="onCopyText()" class="button-click-add" onmouseout="outFunc()">
+              <span id="myTooltip">Copy to clipboard</span>
+            </button>
+
+          </div>
+
+          <div class="container-text-output">
+            <div id="text-output"></div>
+          </div>
 
         </div>
 
-        <div id="frequence-container" style="display: none;">
-          <h2>FREQUENCE:</h2>
-          <div id="new-values"></div>
-        </div>
-      </div>
-
-      <div class="container-inputs-times">
-        <div class="container-actions">
-          <input type="text" class="input-times" placeholder="any value" name="inputyourtext" id="inputyourtext" />
-          <input type="number" min="0" class="input-times" placeholder="times it must appear" name="numberoutputs"
-            id="numberoutputs" />
-          <button class="button-click" onclick="onGenerateValues()">Generate</button>
-        </div>
-
-        <div class='container-button-action'>
-          <button class="button-click-add" onclick="onAddToTextArea()">Add to text area</button>
-
-          <button onclick="onCopyText()" class="button-click-add" onmouseout="outFunc()">
-            <span id="myTooltip">Copy to clipboard</span>
-          </button>
-
-        </div>
-
-        <div class="container-text-output">
-          <div id="text-output"></div>
-        </div>
-
-      </div>
-
-    </div>
-  </div>
-
-  <div id="tab_2" class="tab-column">
-    <div class="tab2-container">
-
-
-      <div class="container-solid mansory-grid">
-
-        <div>
-          <h2>População:</h2>
-          <p>A população de pesquisa é um conjunto completo de elementos que têm um parâmetro comum entre si.
-            A população pesquisada não precisa necessariamente ser humana. Pode ser qualquer coleção de dados que tenha
-            um
-            parâmetro comum, como o número total de lojas de animais em uma cidade.
-          </p>
-        </div>
-      </div>
-
-      <div class="container-solid mansory-grid">
-        <div>
-          <h2>Amostra:</h2>
-          <p>Uma amostra é a menor parte do total, ou seja, um subconjunto de toda a população. Quando são realizadas
-            pesquisas, a amostra são os membros da população convidados a participar da pesquisa. Simplificando, uma
-            amostra é um subgrupo ou subconjunto da população, que pode ser estudado para investigar as características
-            ou
-            o comportamento dos dados da população.</p>
-        </div>
-      </div>
-
-      <div class="container-solid mansory-grid">
-        <div>
-          <h2>Margem de Erro:</h2>
-          <p>A margem de erro quantifica o total de erro de amostragem aleatória na estimativa de um parâmetro, como a
-            média ou proporção. A margem de erro é frequentemente usada nos resultados da pesquisa. Por exemplo, uma
-            pesquisa política pode relatar que o índice de aprovação de um candidato é 55% com uma margem de erro de 5%.
-            Isso significa que o real índice de aprovação é de +/- 5%, e está em algum ponto entre 50% e 60%.</p>
-        </div>
-      </div>
-
-      <div class="container-solid mansory-grid">
-        <div>
-          <h2>Estatística:</h2>
-          <p>Estatística: é a medida numérica que descreve uma característica da amostra. Uma estatística mede algo em
-            uma
-            amostra.</p>
-        </div>
-      </div>
-
-      <div class="container-solid mansory-grid">
-        <div>
-          <h2>Parâmetro:</h2>
-          <p>É a medida numérica que descreve uma característica da população. Um parâmetro mede algo em uma população.
-          </p>
-        </div>
-      </div>
-
-      <div class="container-solid mansory-grid">
-        <div>
-          <h2>Variável:</h2>
-          <p>As variáveis nos estudos estatísticos são os valores que assumem determinadas características dentro de uma
-            pesquisa e podem ser classificadas em qualitativas ou quantitativas.
-
-          </p>
-        </div>
-      </div>
-
-      <div class="container-solid mansory-grid">
-        <div>
-          <h2>Variáveis Qualitativas:</h2>
-          <p>As variáveis qualitativas não podem ser expressas numericamente, pois relacionam situações como a cor da
-            pele, cor dos olhos, marca de refrigerante, marca de automóvel, preferência musical entre outras. Elas podem
-            ser divididas em ordinais e nominais. As variáveis qualitativas ordinais, apesar de não serem numéricas,
-            obedecem a uma relação de ordem, por exemplo: conceitos como ótimo, bom, regular e ruim, classe social, grau
-            de instrução, etc. Já as variáveis qualitativas nominais não estão relacionadas à ordem, elas são
-            identificadas apenas por nomes, por exemplo, as cores: vermelho, amarelo, preto, azul, rosa, verde, etc.
-          </p>
-        </div>
-      </div>
-
-      <div class="container-solid mansory-grid">
-        <div>
-          <h2>Variáveis Quantitativas:</h2>
-          <p>
-            variáveis quantitativas usamos a representação numérica. Elas podem ser classificadas em discretas e
-            contínuas. As variáveis quantitativas discretas acontecem relacionadas a situações limitadas, por exemplo:
-            número de revistas vendidas, quantidade de consultas médicas, número de filhos de um casal. No caso das
-            variáveis quantitativas contínuas, a abrangência pertence a um intervalo que se caracteriza por infinitos
-            valores, como exemplo podemos citar: o peso de um produto, altura dos alunos de uma escola, velocidade de
-            objetos, entre outras situações.
-          </p>
-        </div>
-      </div>
-
-      <div class="container-solid mansory-grid">
-        <div>
-          <h2>Desvio Padrão:</h2>
-          <p>O desvio padrão é a raiz quadrada da variância.</p>
-        </div>
-      </div>
-
-      <div class="container-solid mansory-grid">
-        <div>
-          <h2>Variação Percentual:</h2>
-          <p>Podemos dizer que variação percentual é uma forma de apresentar a relação entre dois números na forma
-            percentual.
-            Por exemplo, um produto que custava R$ 10 aumentou para R$ 15, Qual foi a variação percentual de aumento?
-            Este é um caso muito simples e dá para resolver inclusive sem usar calculadora.
-
-            Se subiu de 10 para 15, ele teve uma variação percentual e 50% ou seja um aumento de 50%.
-            Para calcular: ((Valor maior - Valor Menor) / Valor Menor) * 100
-
-            <!-- Used to show the equation -->
-            \[x = { ({ 15-10 \over 10 }) * 100 } = 50\% \]
-
-          </p>
-        </div>
       </div>
     </div>
-  </div>
 
-  <div id="tab_3" class="tab-column" style="display:none">
-    <div class="container">
-      TAB 3
+    <div id="tab_2" class="tab-column">
+      <div class="tab2-container">
+
+
+        <div class="container-solid mansory-grid">
+
+          <div>
+            <h2>População:</h2>
+            <p>A população de pesquisa é um conjunto completo de elementos que têm um parâmetro comum entre si.
+              A população pesquisada não precisa necessariamente ser humana. Pode ser qualquer coleção de dados que
+              tenha
+              um
+              parâmetro comum, como o número total de lojas de animais em uma cidade.
+            </p>
+          </div>
+        </div>
+
+        <div class="container-solid mansory-grid">
+          <div>
+            <h2>Amostra:</h2>
+            <p>Uma amostra é a menor parte do total, ou seja, um subconjunto de toda a população. Quando são realizadas
+              pesquisas, a amostra são os membros da população convidados a participar da pesquisa. Simplificando, uma
+              amostra é um subgrupo ou subconjunto da população, que pode ser estudado para investigar as
+              características
+              ou
+              o comportamento dos dados da população.</p>
+          </div>
+        </div>
+
+        <div class="container-solid mansory-grid">
+          <div>
+            <h2>Margem de Erro:</h2>
+            <p>A margem de erro quantifica o total de erro de amostragem aleatória na estimativa de um parâmetro, como a
+              média ou proporção. A margem de erro é frequentemente usada nos resultados da pesquisa. Por exemplo, uma
+              pesquisa política pode relatar que o índice de aprovação de um candidato é 55% com uma margem de erro de
+              5%.
+              Isso significa que o real índice de aprovação é de +/- 5%, e está em algum ponto entre 50% e 60%.</p>
+          </div>
+        </div>
+
+        <div class="container-solid mansory-grid">
+          <div>
+            <h2>Estatística:</h2>
+            <p>Estatística: é a medida numérica que descreve uma característica da amostra. Uma estatística mede algo em
+              uma
+              amostra.</p>
+          </div>
+        </div>
+
+        <div class="container-solid mansory-grid">
+          <div>
+            <h2>Parâmetro:</h2>
+            <p>É a medida numérica que descreve uma característica da população. Um parâmetro mede algo em uma
+              população.
+            </p>
+          </div>
+        </div>
+
+        <div class="container-solid mansory-grid">
+          <div>
+            <h2>Variável:</h2>
+            <p>As variáveis nos estudos estatísticos são os valores que assumem determinadas características dentro de
+              uma
+              pesquisa e podem ser classificadas em qualitativas ou quantitativas.
+
+            </p>
+          </div>
+        </div>
+
+        <div class="container-solid mansory-grid">
+          <div>
+            <h2>Variáveis Qualitativas:</h2>
+            <p>As variáveis qualitativas não podem ser expressas numericamente, pois relacionam situações como a cor da
+              pele, cor dos olhos, marca de refrigerante, marca de automóvel, preferência musical entre outras. Elas
+              podem
+              ser divididas em ordinais e nominais. As variáveis qualitativas ordinais, apesar de não serem numéricas,
+              obedecem a uma relação de ordem, por exemplo: conceitos como ótimo, bom, regular e ruim, classe social,
+              grau
+              de instrução, etc. Já as variáveis qualitativas nominais não estão relacionadas à ordem, elas são
+              identificadas apenas por nomes, por exemplo, as cores: vermelho, amarelo, preto, azul, rosa, verde, etc.
+            </p>
+          </div>
+        </div>
+
+        <div class="container-solid mansory-grid">
+          <div>
+            <h2>Variáveis Quantitativas:</h2>
+            <p>
+              variáveis quantitativas usamos a representação numérica. Elas podem ser classificadas em discretas e
+              contínuas. As variáveis quantitativas discretas acontecem relacionadas a situações limitadas, por exemplo:
+              número de revistas vendidas, quantidade de consultas médicas, número de filhos de um casal. No caso das
+              variáveis quantitativas contínuas, a abrangência pertence a um intervalo que se caracteriza por infinitos
+              valores, como exemplo podemos citar: o peso de um produto, altura dos alunos de uma escola, velocidade de
+              objetos, entre outras situações.
+            </p>
+          </div>
+        </div>
+
+        <div class="container-solid mansory-grid">
+          <div>
+            <h2>Desvio Padrão:</h2>
+            <p>O desvio padrão é a raiz quadrada da variância.
+              O desvio padrão é capaz de identificar o “erro” em um conjunto de dados, caso quiséssemos substituir um
+              dos valores coletados pela média aritmética.
+
+              O desvio padrão aparece junto à média aritmética, informando o quão “confiável” é esse valor.
+
+            </p>
+          </div>
+        </div>
+
+        <div class="container-solid mansory-grid">
+          <div>
+            <h2>Variação Percentual:</h2>
+            <p>Podemos dizer que variação percentual é uma forma de apresentar a relação entre dois números na forma
+              percentual.
+              Por exemplo, um produto que custava R$ 10 aumentou para R$ 15, Qual foi a variação percentual de aumento?
+              Este é um caso muito simples e dá para resolver inclusive sem usar calculadora.
+
+              Se subiu de 10 para 15, ele teve uma variação percentual e 50% ou seja um aumento de 50%.
+              Para calcular: ((Valor maior - Valor Menor) / Valor Menor) * 100
+
+              <!-- Used to show the equation -->
+              \[x = { ({ 15-10 \over 10 }) * 100 } = 50\% \]
+
+            </p>
+          </div>
+        </div>
+
+        <div class="container-solid mansory-grid">
+          <div>
+            <h2>Variância:</h2>
+            <p>Dado um conjunto de dados, a variância é uma medida de dispersão que mostra o quão distante cada valor
+              desse conjunto está do valor central (médio).
+
+              Quanto menor é a variância, mais próximos os valores estão da média; mas quanto maior ela é, mais os
+              valores estão distantes da média.
+            </p>
+          </div>
+        </div>
+
+
+        <div class="container-solid mansory-grid">
+          <div>
+            <h2>Classe:</h2>
+            <p>
+              É cada um dos grupos de valores em que se subdivide os dados observados.
+              
+            </p>
+          </div>
+        </div>
+
+        <div class="container-solid mansory-grid">
+          <div>
+            <h2>Distribuição de Frequências por Classes:</h2>
+
+            <p>Determinação da Amplitude Total:</p>
+            <p>AT = Xmax − Xmin</p>
+            <p>Exemplo: 2 2 2 9 9 9 9 9 9 11 11 13 13 15 15 23 23 23 27 31 37 41 41 43 45 45 45</p>
+            <p><b>AT</b> = 45 − 2 = 43</p>
+
+            <p>Determinar número de classes (c):</p>
+            <p>
+              \[ c = \sqrt{N} \] "Onde <b>N</b> é a quantidade de observações. Nesse exemplo é <b>27</b>"
+              Exemplo: \[ c = \sqrt{27} \]
+              <b>c</b> = 5.19 (aproxima para cima)
+            </p>
+            <p><b>c</b> = 6</p>
+
+            <p>Determinação da Amplitude das Classes (h):</p>
+            <p>\[ h \cong {AT \over c} \]</p>
+            <p>Exemplo: \[ h \cong {43 \over 6} \]</p>
+            <p><b>h</b> = 6</p>
+            <div class="center-content">
+            <table>
+              <thead><tr><th class="th-style td-right-border">Classes</th><th class="th-style">Freq</th></tr></thead>
+              <tbody>
+                <tr><td class='td-right-border'>2 &#x022A2; 8</td><td>3</td></tr>
+                <tr><td class='td-right-border'>8 &#x022A2; 14</td><td>10</td></tr>
+                <tr><td class='td-right-border'>14 &#x022A2; 20</td><td>2</td></tr>
+                <tr><td class='td-right-border'>20 &#x022A2; 26</td><td>3</td></tr>
+                <tr><td class='td-right-border'>26 &#x022A2; 32</td><td>2</td></tr>
+                <tr><td class='td-right-border'>32 &#x022A2; 38</td><td>1</td></tr>
+                <tr><td class='td-right-border'>38 &#x022A2; 44</td><td>3</td></tr>
+                <tr><td class='td-right-border'>44 &#x022A2; 50</td><td>3</td></tr>
+                <tr><td class="th-style td-right-border"> &#8721; </td><td class="th-style">50</td></tr>
+              </tbody>
+            </table>
+          </div>
+          </div>
+        </div>
+
+
+
+      </div>
     </div>
+
+    <div id="tab_3" class="tab-column" style="display:none">
+      <div class="container">
+        TAB 3
+      </div>
+    </div>
+
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"></script>
