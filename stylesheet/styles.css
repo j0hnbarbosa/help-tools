@@ -218,7 +218,7 @@ th {
   column-gap: 10px;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 950px) {
   .tab2-container {
     column-count: 2;
   }

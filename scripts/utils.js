@@ -73,7 +73,7 @@ const getvalue = () => {
                           </tbody>                          
                          </table>
                       `
-
+      frequenceContainer.style.display = 'block';
       newValues.innerHTML = tableFormat;
     }
   }
@@ -95,6 +95,9 @@ const clearValue = () => {
   medianaResult.innerHTML = '';
   medianaOutputCalc.innerHTML = '';
   medianaOutput.innerHTML = '';
+
+  mediaModaMedianaContainer.style.display = 'none';
+  frequenceContainer.style.display = 'none';
 
 }
 
@@ -177,12 +180,17 @@ const caculateMediana = (valuesNumber) => {
 };
 
 const onCaculateMediaMedianaModa = (valuesNumber) => {
-  if (onlyNumber.checked) {
+  if (onlyNumber.checked && !_.isEmpty(valuesNumber)) {
+    mediaModaMedianaContainer.style.display = 'block'
     const orderedValues = _.chain(valuesNumber).map((value) => parseInt(value, 10)).sortBy().value();
     calculateMedia(orderedValues);
     caculateModa(orderedValues);
     caculateMediana(orderedValues);
+  } else {
+    mediaModaMedianaContainer.style.display = 'none'
   }
+
+
 };
 
 const onAddToTextArea = () => {

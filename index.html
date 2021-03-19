@@ -39,45 +39,49 @@
           <button class="button-click" onclick="getvalue()">Calculate Frequence</button>
         </div>
 
-        <h2>Média, Mediana e Moda</h2>
-        <div>
-          <h3>Média:</h3>
-          <div id="media-output-calc"></div>
-          <div class="space-top">
-            <span>Média: <strong id="media-result"></strong></span>
-          </div>
-        </div>
-
-        <div class="divider"></div>
-
-        <div>
-          <h3>Mediana:</h3>
-          <div id='mediana-output'></div>
-          <div id='mediana-output-calc'></div>
-          <div class="space-top">
-            <span>Mediana: <strong id="mediana-result"></strong></span>
-          </div>
-        </div>
-
-        <div class="divider"></div>
-
-        <div>
-          <h3>Moda</h3>
+        <div id="media-moda-mediana-container" style="display: none">
+          <h2>Média, Mediana e Moda</h2>
           <div>
-            <table id='table-moda-result'></table>
+            <h3>Média:</h3>
+            <div id="media-output-calc"></div>
             <div class="space-top">
-              <span>Moda: <strong id="moda-result"></strong></span>
+              <span>Média: <strong id="media-result"></strong></span>
             </div>
           </div>
+
+          <div class="divider"></div>
+
+          <div>
+            <h3>Mediana:</h3>
+            <div id='mediana-output'></div>
+            <div id='mediana-output-calc'></div>
+            <div class="space-top">
+              <span>Mediana: <strong id="mediana-result"></strong></span>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div>
+            <h3>Moda</h3>
+            <div>
+              <table id='table-moda-result'></table>
+              <div class="space-top">
+                <span>Moda: <strong id="moda-result"></strong></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div id="new-values-medias"></div>
+
         </div>
 
-        <div class="divider"></div>
-
-        <div id="new-values-medias"></div>
-
-        <h2>FREQUENCE:</h2>
-        <div id="new-values"></div>
-
+        <div id="frequence-container" style="display: none;">
+          <h2>FREQUENCE:</h2>
+          <div id="new-values"></div>
+        </div>
       </div>
 
       <div class="container-inputs-times">
@@ -213,26 +217,11 @@
             Este é um caso muito simples e dá para resolver inclusive sem usar calculadora.
 
             Se subiu de 10 para 15, ele teve uma variação percentual e 50% ou seja um aumento de 50%.
-            Para calcular: ((Valor maior - Valor Menor) / Valor Menor) / 100
-          
-            <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-              <mi>x</mi>
-              <mo>=</mo>
-              <mrow>
-                <mfrac>
-                  <mrow>
-                    <mi>15</mi>
-                    <mo>&#x2212;</mo>
-                    <mi>10</mi>
-                  </mrow>
-                  <mrow>
-                    <mn>10</mn>
-                  </mrow>
-                </mfrac>
-              </mrow>
-              <mo>.</mo>
-            </math>
-          
+            Para calcular: ((Valor maior - Valor Menor) / Valor Menor) * 100
+
+            <!-- Used to show the equation -->
+            \[x = { ({ 15-10 \over 10 }) * 100 } = 50\% \]
+
           </p>
         </div>
       </div>

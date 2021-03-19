@@ -11,3 +11,5 @@ const modaResult = document.getElementById('moda-result');
 const medianaResult = document.getElementById('mediana-result');
 const tableModaResult = document.getElementById('table-moda-result');
 const onlyNumber = document.getElementById('onlynumber');
+const mediaModaMedianaContainer = document.getElementById('media-moda-mediana-container');
+const frequenceContainer = document.getElementById('frequence-container');
