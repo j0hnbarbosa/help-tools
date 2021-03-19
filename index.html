@@ -17,12 +17,12 @@
 <body>
 
   <div class="container-tab">
-    <button class="tablinks selected-tab" onclick="openTab(event,'tab_1')">TAB 1</button>
-    <button class="tablinks" onclick="openTab(event,'tab_2')">TAB 2</button>
+    <button class="tablinks" onclick="openTab(event,'tab_1')">TAB 1</button>
+    <button class="tablinks selected-tab" onclick="openTab(event,'tab_2')">TAB 2</button>
     <button class="tablinks" onclick="openTab(event,'tab_3')">TAB 3</button>
   </div>
 
-  <div id="tab_1" class="tab-column">
+  <div id="tab_1" class="tab-column" style="display:none">
     <div class="container-chk-only-number">
       <input type="checkbox" id="onlynumber" name="onlynumber" checked>
       <label for="onlynumber" class="onlynumber-label">Only Numbers</label>
@@ -39,7 +39,7 @@
           <button class="button-click" onclick="getvalue()">Calculate Frequence</button>
         </div>
 
-        <h2>Média, Moda e Mediana</h2>
+        <h2>Média, Mediana e Moda</h2>
         <div>
           <h3>Média:</h3>
           <div id="media-output-calc"></div>
@@ -64,12 +64,7 @@
         <div>
           <h3>Moda</h3>
           <div>
-            <table id='table-moda-result'>
-              <tr>
-                <th>Value</th>
-                <th>Freq</th>
-              </tr>
-            </table>
+            <table id='table-moda-result'></table>
             <div class="space-top">
               <span>Moda: <strong id="moda-result"></strong></span>
             </div>
@@ -111,9 +106,136 @@
     </div>
   </div>
 
-  <div id="tab_2" class="tab-column" style="display:none">
-    <div class="container">
-      TAB 2
+  <div id="tab_2" class="tab-column">
+    <div class="tab2-container">
+
+
+      <div class="container-solid mansory-grid">
+
+        <div>
+          <h2>População:</h2>
+          <p>A população de pesquisa é um conjunto completo de elementos que têm um parâmetro comum entre si.
+            A população pesquisada não precisa necessariamente ser humana. Pode ser qualquer coleção de dados que tenha
+            um
+            parâmetro comum, como o número total de lojas de animais em uma cidade.
+          </p>
+        </div>
+      </div>
+
+      <div class="container-solid mansory-grid">
+        <div>
+          <h2>Amostra:</h2>
+          <p>Uma amostra é a menor parte do total, ou seja, um subconjunto de toda a população. Quando são realizadas
+            pesquisas, a amostra são os membros da população convidados a participar da pesquisa. Simplificando, uma
+            amostra é um subgrupo ou subconjunto da população, que pode ser estudado para investigar as características
+            ou
+            o comportamento dos dados da população.</p>
+        </div>
+      </div>
+
+      <div class="container-solid mansory-grid">
+        <div>
+          <h2>Margem de Erro:</h2>
+          <p>A margem de erro quantifica o total de erro de amostragem aleatória na estimativa de um parâmetro, como a
+            média ou proporção. A margem de erro é frequentemente usada nos resultados da pesquisa. Por exemplo, uma
+            pesquisa política pode relatar que o índice de aprovação de um candidato é 55% com uma margem de erro de 5%.
+            Isso significa que o real índice de aprovação é de +/- 5%, e está em algum ponto entre 50% e 60%.</p>
+        </div>
+      </div>
+
+      <div class="container-solid mansory-grid">
+        <div>
+          <h2>Estatística:</h2>
+          <p>Estatística: é a medida numérica que descreve uma característica da amostra. Uma estatística mede algo em
+            uma
+            amostra.</p>
+        </div>
+      </div>
+
+      <div class="container-solid mansory-grid">
+        <div>
+          <h2>Parâmetro:</h2>
+          <p>É a medida numérica que descreve uma característica da população. Um parâmetro mede algo em uma população.
+          </p>
+        </div>
+      </div>
+
+      <div class="container-solid mansory-grid">
+        <div>
+          <h2>Variável:</h2>
+          <p>As variáveis nos estudos estatísticos são os valores que assumem determinadas características dentro de uma
+            pesquisa e podem ser classificadas em qualitativas ou quantitativas.
+
+          </p>
+        </div>
+      </div>
+
+      <div class="container-solid mansory-grid">
+        <div>
+          <h2>Variáveis Qualitativas:</h2>
+          <p>As variáveis qualitativas não podem ser expressas numericamente, pois relacionam situações como a cor da
+            pele, cor dos olhos, marca de refrigerante, marca de automóvel, preferência musical entre outras. Elas podem
+            ser divididas em ordinais e nominais. As variáveis qualitativas ordinais, apesar de não serem numéricas,
+            obedecem a uma relação de ordem, por exemplo: conceitos como ótimo, bom, regular e ruim, classe social, grau
+            de instrução, etc. Já as variáveis qualitativas nominais não estão relacionadas à ordem, elas são
+            identificadas apenas por nomes, por exemplo, as cores: vermelho, amarelo, preto, azul, rosa, verde, etc.
+          </p>
+        </div>
+      </div>
+
+      <div class="container-solid mansory-grid">
+        <div>
+          <h2>Variáveis Quantitativas:</h2>
+          <p>
+            variáveis quantitativas usamos a representação numérica. Elas podem ser classificadas em discretas e
+            contínuas. As variáveis quantitativas discretas acontecem relacionadas a situações limitadas, por exemplo:
+            número de revistas vendidas, quantidade de consultas médicas, número de filhos de um casal. No caso das
+            variáveis quantitativas contínuas, a abrangência pertence a um intervalo que se caracteriza por infinitos
+            valores, como exemplo podemos citar: o peso de um produto, altura dos alunos de uma escola, velocidade de
+            objetos, entre outras situações.
+          </p>
+        </div>
+      </div>
+
+      <div class="container-solid mansory-grid">
+        <div>
+          <h2>Desvio Padrão:</h2>
+          <p>O desvio padrão é a raiz quadrada da variância.</p>
+        </div>
+      </div>
+
+      <div class="container-solid mansory-grid">
+        <div>
+          <h2>Variação Percentual:</h2>
+          <p>Podemos dizer que variação percentual é uma forma de apresentar a relação entre dois números na forma
+            percentual.
+            Por exemplo, um produto que custava R$ 10 aumentou para R$ 15, Qual foi a variação percentual de aumento?
+            Este é um caso muito simples e dá para resolver inclusive sem usar calculadora.
+
+            Se subiu de 10 para 15, ele teve uma variação percentual e 50% ou seja um aumento de 50%.
+            Para calcular: ((Valor maior - Valor Menor) / Valor Menor) / 100
+          
+            <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+              <mi>x</mi>
+              <mo>=</mo>
+              <mrow>
+                <mfrac>
+                  <mrow>
+                    <mi>15</mi>
+                    <mo>&#x2212;</mo>
+                    <mi>10</mi>
+                  </mrow>
+                  <mrow>
+                    <mn>10</mn>
+                  </mrow>
+                </mfrac>
+              </mrow>
+              <mo>.</mo>
+            </math>
+          
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -124,6 +246,9 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
   <script src="scripts/getElementById.js"></script>
   <script src="scripts/utils.js"></script>
 
