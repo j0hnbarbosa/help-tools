@@ -16,8 +16,8 @@ const getTab1 = () => {
       <textarea id="text-input" class="text-input-class" onchange="onTextAreaChangeValue"></textarea>
 
       <div class="btn-container-click">
-        <button class="button-click clear-btn" onclick="clearValue()">Clear</button>
-        <button class="button-click" onclick="getvalue()">Calculate Frequence</button>
+        <button class="button-click clear-btn" onclick="onClearValue()">Clear</button>
+        <button class="button-click" onclick="onGetValue()">Calculate Frequence</button>
       </div>
 
       <div id="media-moda-mediana-container" style="display: none">
@@ -76,7 +76,7 @@ const getTab1 = () => {
       <div class='container-button-action'>
         <button class="button-click-add" onclick="onAddToTextArea()">Add to text area</button>
 
-        <button onclick="onCopyText()" class="button-click-add" onmouseout="outFunc()">
+        <button onclick="onCopyText()" class="button-click-add" onmouseout="onOutFunc()">
           <span id="myTooltip">Copy to clipboard</span>
         </button>
 

@@ -1,7 +1,7 @@
-const warnigText = 'Enter some values in the inputs and press GENERATE';
+const WARNIG_TEXT = 'Enter some values in the inputs and press GENERATE';
 
 const textIsEmpty = () => {
-  if (!_.isEmpty(textOutput.innerHTML) && textOutput.innerHTML !== warnigText) {
+  if (!_.isEmpty(textOutput.innerHTML) && textOutput.innerHTML !== WARNIG_TEXT) {
     return true;
   }
   return false;
@@ -13,7 +13,7 @@ const onTextAreaChangeValue = () => {
   }
 };
 
-const getvalue = () => {
+const onGetValue = () => {
   let valueTextArea = textArea.value
     .trim()
     .replace(/\t+/g, ' ')
@@ -26,9 +26,10 @@ const getvalue = () => {
       valueTextArea = valueTextArea.replace(/([^ .\d])/gi, '');
     }
 
-
-    valueTextArea = _.sortBy(valueTextArea.split(' '));
-    valueTextArea = _.filter(valueTextArea, (v) => v !== '');
+    valueTextArea = _.chain(valueTextArea.split(' '))
+      .filter((v) => v !== '')
+      .sortBy()
+      .value()
 
     onCaculateMediaMedianaModa(valueTextArea);
 
@@ -46,40 +47,45 @@ const getvalue = () => {
         totalPercentage += parseFloat(resuPerce, 10);
 
         return (
-          `<tr>
-          <td>${k}</td>
-          <td>${grouped[k].length}</td>
-          <td>${resuPerce.toFixed(2)}</td>
+          // It is using vs-code extension: es6-string-html
+          /*html*/`
+          <tr>
+            <td class="td-right-border">${k}</td>
+            <td class="td-right-border">${grouped[k].length}</td>
+            <td>${resuPerce.toFixed(2)}</td>
           </tr>
           `)
       }
       )
+      
+      // It is using vs-code extension: es6-string-html
+      const tableFormat = /*html*/`
+        <table>
+            <thead>
+              <tr>
+                <th class="th-style td-right-border ">Values</th> 
+                <th class="th-style td-right-border ">F.i</th> 
+                <th class="th-style">%</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${formatValue.join(" ")}
+              <tr class="total">
+                <td class="td-right-border th-style">TOTAL</td>
+                <td class="td-right-border th-style">${valueTextArea.length}</td>
+                <td class="th-style">${totalPercentage.toFixed(2)}</td>
+              </tr>
+            </tbody>                          
+        </table>
+      `
 
-      const tableFormat = `<table>
-                          <thead>
-                            <tr>
-                              <th>values</th> 
-                              <th>frequence</th> 
-                              <th>%</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            ${formatValue.join(" ")}
-                            <tr class="total">
-                              <td>TOTAL</td>
-                              <td>${valueTextArea.length}</td>
-                              <td>${totalPercentage.toFixed(2)}</td>
-                            </tr>
-                          </tbody>                          
-                         </table>
-                      `
       frequenceContainer.style.display = 'block';
       newValues.innerHTML = tableFormat;
     }
   }
 };
 
-const clearValue = () => {
+const onClearValue = () => {
   textArea.value = '';
   newValues.innerHTML = '';
   textOutput.innerHTML = '';
@@ -106,7 +112,7 @@ const onGenerateValues = () => {
   const numberoutputs = getInputNumber.value;
 
   if (!_.isEmpty(inputyourtext) && !_.isEmpty(numberoutputs)) {
-    let values = ""
+    let values = " "
     const count = parseInt(numberoutputs, 10);
 
     _.times(count, () => values += `${inputyourtext} `);
@@ -139,18 +145,22 @@ const caculateModa = (valuesNumber) => {
       mostFrequent.push({ value: _.head(v), freq: v.length });
     }
   });
+
   if (!_.isEmpty(mostFrequent)) {
-    tableModaResult.innerHTML = `
+    tableModaResult.innerHTML = 
+    /*html*/`
       <tr>
         <th>Value</th><th>Freq</th>
       </tr>
       ${_.chain(mostFrequent)
-        .map(v => (`<tr>
-                        <td>${v.value}</td><td>${v.freq}</td>
-                  </tr>`))
+        .map(v => (
+          /*html*/`
+        <tr>
+            <td>${v.value}</td><td>${v.freq}</td>
+        </tr>
+          `))
         .join(' ').value()}
     `
-
 
     modaResult.innerHTML = _.chain(mostFrequent).map('value').join(" ").value();
   }
@@ -162,6 +172,7 @@ const caculateMediana = (valuesNumber) => {
   let mediaValuePos = '';
   let calcMediana = '';
   const middlePos = Math.floor(valuesNumber.length / 2);
+
   if (valuesNumber.length % 2 === 0) {
     const firstNum = valuesNumber[middlePos - 1];
     const secondNum = valuesNumber[middlePos];
@@ -183,13 +194,13 @@ const onCaculateMediaMedianaModa = (valuesNumber) => {
   if (onlyNumber.checked && !_.isEmpty(valuesNumber)) {
     mediaModaMedianaContainer.style.display = 'block'
     const orderedValues = _.chain(valuesNumber).map((value) => parseInt(value, 10)).sortBy().value();
+
     calculateMedia(orderedValues);
     caculateModa(orderedValues);
     caculateMediana(orderedValues);
   } else {
     mediaModaMedianaContainer.style.display = 'none'
   }
-
 
 };
 
@@ -198,44 +209,8 @@ const onAddToTextArea = () => {
     const addText = `${textArea.value} ${textOutput.innerHTML}`;
     textArea.value = addText;
   } else {
-    textOutput.innerHTML = warnigText;
+    textOutput.innerHTML = WARNIG_TEXT;
   }
 
 }
 
-const onCopyText = () => {
-  if (textIsEmpty()) {
-    let range = document.createRange();
-    range.selectNode(textOutput);
-    window.getSelection().removeAllRanges(); // clear current selection
-    window.getSelection().addRange(range); // to select text
-    document.execCommand("copy");
-    window.getSelection().removeAllRanges();// to deselect
-
-    let tooltip = document.getElementById("myTooltip");
-    tooltip.innerHTML = "Copied ";
-  }
-}
-
-const outFunc = () => {
-  let tooltip = document.getElementById("myTooltip");
-  tooltip.innerHTML = "Copy to clipboard";
-
-}
-
-const openTab = (evt, tab) => {
-  let i, x, tablinks;
-
-  x = document.getElementsByClassName("tab-column");
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";
-  }
-
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < x.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" selected-tab", "");
-  }
-
-  document.getElementById(tab).style.display = "block";
-  evt.currentTarget.className += " selected-tab";
-}

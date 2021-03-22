@@ -22,14 +22,14 @@
 
   <div class="container-page">
     <div class="container-tab">
-      <button class="tablinks" onclick="openTab(event,'tab_1')">TAB 1</button>
-      <button class="tablinks selected-tab" onclick="openTab(event,'tab_2')">TAB 2</button>
+      <button class="tablinks selected-tab" onclick="openTab(event,'tab_1')">TAB 1</button>
+      <button class="tablinks" onclick="openTab(event,'tab_2')">TAB 2</button>
       <button class="tablinks" onclick="openTab(event,'tab_3')">TAB 3</button>
     </div>
 
-    <div id="tab_1" class="tab-column" style="display:none"></div>
+    <div id="tab_1" class="tab-column"></div>
 
-    <div id="tab_2" class="tab-column"></div>
+    <div id="tab_2" class="tab-column" style="display:none"></div>
 
     <div id="tab_3" class="tab-column" style="display:none">
 
@@ -37,14 +37,22 @@
 
   </div>
 
+  <!-- ORDER IS IMPORTANT TO CALL THE FUNCTIONS! -->
+
+  <!-- scripts web remote -->
   <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"></script>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
-  <script src="scripts/getElementById.js"></script>
-  <script src="scripts/utils.js"></script>
+  <!-- tabs -->
+  <script src="scripts/tabs/getTabs.js"></script>
   <script src="scripts/tabs/tab1.js"></script>
   <script src="scripts/tabs/tab2.js"></script>
   <script src="scripts/tabs/tab3.js"></script>
+
+  <!-- utils -->
+  <script src="scripts/getElementById.js"></script>
+  <script src="scripts/utils/utils.js"></script>
+  <script src="scripts/open-tab/index.js"></script>
+  <script src="scripts/copy-text/index.js"></script>
 
 </html>
