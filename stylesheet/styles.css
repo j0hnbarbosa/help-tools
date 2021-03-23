@@ -13,6 +13,8 @@ span {
 
 body {
   margin: 10px 25px;
+  padding-bottom: 25px;
+  background: #FAFAFA;
 }
 
 h1,
@@ -26,6 +28,7 @@ p {
   max-width: 1500px;
   margin-left: auto;
   margin-right: auto;
+  padding-bottom: 25px;
 }
 
 textarea {
@@ -93,7 +96,6 @@ th {
 
 .container {
   display: flex;
-  height: 350px;
 }
 
 .container-inputs-times {
@@ -214,9 +216,11 @@ th {
   font-size: 14px;
 }
 
-.container-solid {
+.card-solid {
   padding: 10px;
   border: 1px solid #BBB;
+  background: #FFFFFF;
+  border-radius: 2px;
 }
 
 .tab2-container {
@@ -261,4 +265,17 @@ th {
 
 .td-right-border {
   border-right: 1px solid #BBB;
+}
+
+.margin-top {
+  margin-top: 10px;
+}
+
+.margin-bottom {
+  margin-bottom: 20px;
+}
+
+.footer {
+  padding-bottom: 25px;
+  height: 25px;
 }

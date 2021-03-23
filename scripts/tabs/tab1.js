@@ -20,7 +20,7 @@ const getTab1 = () => {
         <button class="button-click" onclick="onGetValue()">Calculate Frequence</button>
       </div>
 
-      <div id="media-moda-mediana-container" style="display: none">
+      <div id="media-moda-mediana-container" class="card-solid margin-top margin-bottom" style="display: none">
         <h2>Média, Mediana e Moda</h2>
         <div>
           <h3>Média:</h3>
@@ -53,16 +53,34 @@ const getTab1 = () => {
           </div>
         </div>
 
-        <div class="divider"></div>
-
         <div id="new-values-medias"></div>
 
       </div>
 
-      <div id="frequence-container" style="display: none;">
+      <div id="frequence-container" class="card-solid margin-top margin-bottom" style="display: none;">
         <h2>FREQUENCE:</h2>
         <div id="new-values"></div>
       </div>
+
+      <div id="frequence-by-classe-container" class="card-solid margin-top margin-bottom" style="display: none;">
+        <h2>Classe Frequence:</h2>
+        <div id="new-values-classes"></div>
+      </div>
+
+
+      <div id="variancia-desvio-padrao-container" class="card-solid margin-top margin-bottom" style="display: none;">
+        <h2>Variância, Desvio Padrão:</h2>
+        <div>
+          <h3>Variância:</h3>
+          <div id='variancia-output-calc'></div>
+          <div class="space-top">
+            <span>Variância: <strong id="variancia-result"></strong></span>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+      </div>
+
     </div>
 
     <div class="container-inputs-times">

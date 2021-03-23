@@ -14,4 +14,10 @@ const onlyNumber = document.getElementById('onlynumber');
 const mediaModaMedianaContainer = document.getElementById('media-moda-mediana-container');
 const frequenceContainer = document.getElementById('frequence-container');
 
+const frequenceByClasseContainer = document.getElementById('frequence-by-classe-container');
+const newValuesClasses = document.getElementById('new-values-classes');
+
+const varianciaDesvioPadraoContainer = document.getElementById('variancia-desvio-padrao-container');
+const varianciaOutputCalc = document.getElementById('variancia-output-calc');
+
 

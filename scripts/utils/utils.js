@@ -7,6 +7,14 @@ const textIsEmpty = () => {
   return false;
 }
 
+const isOnlyNumber = (valueTextArea) => {
+  if (onlyNumber.checked && !_.isEmpty(valueTextArea)) {
+    return true;
+  }
+
+  return false;
+}
+
 const onTextAreaChangeValue = () => {
   if (onlyNumber.checked && textArea.value) {
     textArea.value = textArea.value.replace(/([^ .\d])/gi, '');
@@ -31,81 +39,131 @@ const onGetValue = () => {
       .sortBy()
       .value()
 
-    onCaculateMediaMedianaModa(valueTextArea);
+      setFrequenceValue(valueTextArea);
 
-    let total = 0;
-    let totalPercentage = 0;
-
-    if (valueTextArea && valueTextArea.length > 0) {
-      const grouped = _.groupBy(valueTextArea, (v) => v);
-      const keys = _.keys(grouped);
-
-      _.forEach(keys, (k) => { total += grouped[k].length });
-
-      const formatValue = _.map(keys, (k) => {
-        const resuPerce = ((grouped[k].length / total) * 100);
-        totalPercentage += parseFloat(resuPerce, 10);
-
-        return (
-          // It is using vs-code extension: es6-string-html
-          /*html*/`
-          <tr>
-            <td class="td-right-border">${k}</td>
-            <td class="td-right-border">${grouped[k].length}</td>
-            <td>${resuPerce.toFixed(2)}</td>
-          </tr>
-          `)
-      }
-      )
-      
-      // It is using vs-code extension: es6-string-html
-      const tableFormat = /*html*/`
-        <table>
-            <thead>
-              <tr>
-                <th class="th-style td-right-border ">Values</th> 
-                <th class="th-style td-right-border ">F.i</th> 
-                <th class="th-style">%</th>
-              </tr>
-            </thead>
-            <tbody>
-              ${formatValue.join(" ")}
-              <tr class="total">
-                <td class="td-right-border th-style">TOTAL</td>
-                <td class="td-right-border th-style">${valueTextArea.length}</td>
-                <td class="th-style">${totalPercentage.toFixed(2)}</td>
-              </tr>
-            </tbody>                          
-        </table>
-      `
-
-      frequenceContainer.style.display = 'block';
-      newValues.innerHTML = tableFormat;
+      if (isOnlyNumber(valueTextArea)) {
+        const orderedValues = _.chain(valueTextArea).map((value) => parseInt(value, 10)).sortBy().value();
+        onCaculateMediaMedianaModa(orderedValues);
+        setClasseFrequenceValue(orderedValues);
+        
+    } else {
+      mediaModaMedianaContainer.style.display = 'none'
+      frequenceByClasseContainer.style.display = 'none'
     }
+
   }
 };
 
-const onClearValue = () => {
-  textArea.value = '';
-  newValues.innerHTML = '';
-  textOutput.innerHTML = '';
-  getInputText.value = '';
-  getInputNumber.value = '';
+const setFrequenceValue = (valueTextArea) => {
+  let total = 0;
+  let totalPercentage = 0;
+  let XiFi = 0;
+  let XiSquareFi = 0;
 
-  mediaOutputCalc.innerHTML = '';
-  mediaResult.innerHTML = '';
+  if (valueTextArea && valueTextArea.length > 0) {
+    const grouped = _.groupBy(valueTextArea, (v) => v);
+    const keys = _.keys(grouped);
 
-  modaResult.innerHTML = '';
-  tableModaResult.innerHTML = '';
+    _.forEach(keys, (k) => { total += grouped[k].length });
 
-  medianaResult.innerHTML = '';
-  medianaOutputCalc.innerHTML = '';
-  medianaOutput.innerHTML = '';
+    const formatValue = _.map(keys, (k) => {
+      const resuPerce = ((grouped[k].length / total) * 100);
+      totalPercentage += parseFloat(resuPerce, 10);
 
-  mediaModaMedianaContainer.style.display = 'none';
-  frequenceContainer.style.display = 'none';
+      XiFi += k * grouped[k].length; 
+      XiSquareFi += (k * k) * grouped[k].length; 
 
+      return (
+        // It is using vs-code extension: es6-string-html
+        /*html*/`
+        <tr>
+          <td class="td-right-border">${k}</td>
+          <td class="td-right-border">${grouped[k].length}</td>
+          <td class="td-right-border">${resuPerce.toFixed(2)}</td>
+          <td class="td-right-border">${k * grouped[k].length}</td>
+          <td >${(k * k) * grouped[k].length}</td>
+        </tr>
+        `)
+    }
+    )
+    
+    // It is using vs-code extension: es6-string-html
+    const tableFormat = /*html*/`
+      <table>
+          <thead>
+            <tr>
+              <th class="th-style td-right-border ">Values(x.i)</th> 
+              <th class="th-style td-right-border ">F.i</th> 
+              <th class="th-style td-right-border ">%</th>
+              <th class="th-style td-right-border ">x.i * F.i</th>
+              <th class="th-style">x.i^2 * F.i</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${formatValue.join(" ")}
+            <tr class="total">
+              <td class="td-right-border th-style">TOTAL</td>
+              <td class="td-right-border th-style">${valueTextArea.length}</td>
+              <td class="td-right-border th-style">${totalPercentage.toFixed(2)}</td>
+              <td class="td-right-border th-style">${XiFi}</td>
+              <td class="th-style">${XiSquareFi}</td>
+            </tr>
+          </tbody>                          
+      </table>
+    `
+    
+    frequenceContainer.style.display = 'block';
+    newValues.innerHTML = tableFormat;
+
+
+    if (isOnlyNumber(valueTextArea)) {
+      setVarianciaValue(XiFi, XiSquareFi, valueTextArea.length);
+  } else {
+    varianciaDesvioPadraoContainer.style.display = 'none';
+  }
+
+  }
 }
+
+const setClasseFrequenceValue = (valuesNumber) => {
+  const Xmin = _.head(valuesNumber);
+  const Xmax = _.last(valuesNumber);
+  frequenceByClasseContainer.style.display = 'block';
+  newValuesClasses.innerHTML = `min: ${Xmin} and max ${Xmax}`;
+};
+
+const setVarianciaValue = (XiFi, XiSquareFi, N ) => {
+  varianciaDesvioPadraoContainer.style.display = 'block';
+  varianciaOutputCalc.innerHTML = /*html*/`
+    <p>
+      \\[ s^2 = { { \\sum_{i=1}^k x_i^2 * F_i - ({ { (\\sum_{i=1}^k x_i * F_i)^2 } \\over n}) } \\over n - 1 } \\]
+    </p>
+    <p>
+    \\[ s^2 = { { ${XiSquareFi} - ({ { ${XiFi}^2 } \\over ${N}}) } \\over ${N} - 1 } \\]
+  </p>
+
+  <p>
+    \\[ s^2 = { { ${XiSquareFi} - ({ { ${XiFi * XiFi} } \\over ${N}}) } \\over ${N - 1} } \\]
+  </p>
+
+  <p>
+    \\[ s^2 = { { ${XiSquareFi} - ${((XiFi * XiFi) / (N)).toFixed(2)} } \\over ${N - 1} } \\]
+  </p>
+
+  <p>
+    \\[ s^2 = { { ${(XiSquareFi - ((XiFi * XiFi) / (N))).toFixed(2)} } \\over ${N - 1} } \\]
+  </p>
+
+  <p>
+    \\[ s^2 = ${( (XiSquareFi - ( (XiFi * XiFi) / (N) ) ) / (N - 1) ).toFixed(2)} \\]
+  </p>
+
+  `;
+
+
+  // It should be called for the MathJax reprocess the values after it is inserted in the page
+  MathJax.typeset();
+};
 
 const onGenerateValues = () => {
   const inputyourtext = getInputText.value;
@@ -168,20 +226,21 @@ const caculateModa = (valuesNumber) => {
 }
 
 const caculateMediana = (valuesNumber) => {
+  const valuesNumberTemp = [...valuesNumber];
   let resu = '';
   let mediaValuePos = '';
   let calcMediana = '';
-  const middlePos = Math.floor(valuesNumber.length / 2);
+  const middlePos = Math.floor(valuesNumberTemp.length / 2);
 
-  if (valuesNumber.length % 2 === 0) {
-    const firstNum = valuesNumber[middlePos - 1];
-    const secondNum = valuesNumber[middlePos];
+  if (valuesNumberTemp.length % 2 === 0) {
+    const firstNum = valuesNumberTemp[middlePos - 1];
+    const secondNum = valuesNumberTemp[middlePos];
     resu = ((firstNum + secondNum) / 2).toFixed(2)
-    mediaValuePos = `${valuesNumber.splice(0, middlePos - 1).join(' ')} | ${firstNum} ${secondNum} | ${valuesNumber.splice(2, valuesNumber.length).join(' ')}`;
+    mediaValuePos = `${valuesNumberTemp.splice(0, middlePos - 1).join(' ')} | ${firstNum} ${secondNum} | ${valuesNumberTemp.splice(2, valuesNumberTemp.length).join(' ')}`;
     calcMediana = `(${firstNum} + ${secondNum}) / 2 = ${resu}`;
   } else {
-    resu = valuesNumber[middlePos];
-    mediaValuePos = `${valuesNumber.splice(0, middlePos).join(' ')} | ${resu} | ${valuesNumber.splice(1, valuesNumber.length).join(' ')}`;
+    resu = valuesNumberTemp[middlePos];
+    mediaValuePos = `${valuesNumberTemp.splice(0, middlePos).join(' ')} | ${resu} | ${valuesNumberTemp.splice(1, valuesNumberTemp.length).join(' ')}`;
   }
 
   medianaResult.innerHTML = resu;
@@ -191,16 +250,12 @@ const caculateMediana = (valuesNumber) => {
 };
 
 const onCaculateMediaMedianaModa = (valuesNumber) => {
-  if (onlyNumber.checked && !_.isEmpty(valuesNumber)) {
     mediaModaMedianaContainer.style.display = 'block'
-    const orderedValues = _.chain(valuesNumber).map((value) => parseInt(value, 10)).sortBy().value();
 
-    calculateMedia(orderedValues);
-    caculateModa(orderedValues);
-    caculateMediana(orderedValues);
-  } else {
-    mediaModaMedianaContainer.style.display = 'none'
-  }
+    calculateMedia(valuesNumber);
+    caculateModa(valuesNumber);
+    caculateMediana(valuesNumber);
+
 
 };
 
