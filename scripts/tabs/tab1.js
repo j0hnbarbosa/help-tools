@@ -3,14 +3,13 @@
 */
 const getTab1 = () => {
   const tab1Tags = /*html*/`
-<div>
+  <div class="container-column">
   <div class="container-chk-only-number">
     <input type="checkbox" id="onlynumber" name="onlynumber" checked />
     <label for="onlynumber" class="onlynumber-label">Only Numbers</label>
   </div>
 
   <div class="container">
-
 
     <div class="container-textarea">
       <textarea id="text-input" class="text-input-class" onchange="onTextAreaChangeValue"></textarea>
@@ -19,68 +18,6 @@ const getTab1 = () => {
         <button class="button-click clear-btn" onclick="onClearValue()">Clear</button>
         <button class="button-click" onclick="onGetValue()">Calculate Frequence</button>
       </div>
-
-      <div id="media-moda-mediana-container" class="card-solid margin-top margin-bottom" style="display: none">
-        <h2>Média, Mediana e Moda</h2>
-        <div>
-          <h3>Média:</h3>
-          <div id="media-output-calc"></div>
-          <div class="space-top">
-            <span>Média: <strong id="media-result"></strong></span>
-          </div>
-        </div>
-
-        <div class="divider"></div>
-
-        <div>
-          <h3>Mediana:</h3>
-          <div id='mediana-output'></div>
-          <div id='mediana-output-calc'></div>
-          <div class="space-top">
-            <span>Mediana: <strong id="mediana-result"></strong></span>
-          </div>
-        </div>
-
-        <div class="divider"></div>
-
-        <div>
-          <h3>Moda</h3>
-          <div>
-            <table id='table-moda-result'></table>
-            <div class="space-top">
-              <span>Moda: <strong id="moda-result"></strong></span>
-            </div>
-          </div>
-        </div>
-
-        <div id="new-values-medias"></div>
-
-      </div>
-
-      <div id="frequence-container" class="card-solid margin-top margin-bottom" style="display: none;">
-        <h2>FREQUENCE:</h2>
-        <div id="new-values"></div>
-      </div>
-
-      <div id="frequence-by-classe-container" class="card-solid margin-top margin-bottom" style="display: none;">
-        <h2>Classe Frequence:</h2>
-        <div id="new-values-classes"></div>
-      </div>
-
-
-      <div id="variancia-desvio-padrao-container" class="card-solid margin-top margin-bottom" style="display: none;">
-        <h2>Variância, Desvio Padrão:</h2>
-        <div>
-          <h3>Variância:</h3>
-          <div id='variancia-output-calc'></div>
-          <div class="space-top">
-            <span>Variância: <strong id="variancia-result"></strong></span>
-          </div>
-        </div>
-
-        <div class="divider"></div>
-      </div>
-
     </div>
 
     <div class="container-inputs-times">
@@ -105,8 +42,82 @@ const getTab1 = () => {
       </div>
 
     </div>
-
   </div>
+
+
+  <div class="container-results">
+    <div id="media-moda-mediana-container" class="card-solid margin-top margin-bottom" style="display: none">
+      <h2>Média, Mediana e Moda</h2>
+      <div>
+        <h3>Média:</h3>
+        <div id="media-output-calc"></div>
+        <div class="space-top">
+          <span>Média: <strong id="media-result"></strong></span>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div>
+        <h3>Mediana:</h3>
+        <div id='mediana-output'></div>
+        <div id='mediana-output-calc'></div>
+        <div class="space-top">
+          <span>Mediana: <strong id="mediana-result"></strong></span>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div>
+        <h3>Moda</h3>
+        <div>
+          <table id='table-moda-result'></table>
+          <div class="space-top">
+            <span>Moda: <strong id="moda-result"></strong></span>
+          </div>
+        </div>
+      </div>
+
+      <div id="new-values-medias"></div>
+
+    </div>
+
+    <div id="frequence-container" class="card-solid margin-top margin-bottom" style="display: none;">
+      <h2>FREQUENCE:</h2>
+      <div id="new-values"></div>
+    </div>
+
+    <div id="frequence-by-classe-container" class="card-solid margin-top margin-bottom" style="display: none;">
+      <h2>Classe Frequence:</h2>
+      <div id="new-values-classes"></div>
+    </div>
+
+
+    <div id="variancia-desvio-padrao-container" class="card-solid margin-top margin-bottom"
+      style="display: none;">
+      <h2>Variância, Desvio Padrão:</h2>
+      <div>
+        <h3>Variância:</h3>
+        <div id='variancia-output-calc'></div>
+        <div class="space-top">
+          <span>Variância: <strong id="variancia-result"></strong></span>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div>
+        <h3>Desvio Padrão:</h3>
+        <div id='desvio-padrao-calc'></div>
+        <div class="space-top">
+          <span>Desvio padrão: <strong id="desvio-padrao-result"></strong></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
 </div>
 `
 

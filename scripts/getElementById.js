@@ -19,5 +19,9 @@ const newValuesClasses = document.getElementById('new-values-classes');
 
 const varianciaDesvioPadraoContainer = document.getElementById('variancia-desvio-padrao-container');
 const varianciaOutputCalc = document.getElementById('variancia-output-calc');
+const varianciaResult = document.getElementById('variancia-result');
+
+const desvioPadraoCalc = document.getElementById('desvio-padrao-calc');
+const desvioPadraoResult = document.getElementById('desvio-padrao-result');
 
 

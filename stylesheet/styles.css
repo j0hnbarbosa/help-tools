@@ -96,6 +96,7 @@ th {
 
 .container {
   display: flex;
+  margin-bottom: 120px;
 }
 
 .container-inputs-times {
@@ -240,6 +241,7 @@ th {
   }
 }
 
+
 .mansory-grid {
   margin: 0;
   display: grid;
@@ -278,4 +280,13 @@ th {
 .footer {
   padding-bottom: 25px;
   height: 25px;
+}
+
+.container-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.container-results {
+  max-width: 600px;
 }

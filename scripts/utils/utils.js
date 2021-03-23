@@ -134,6 +134,8 @@ const setClasseFrequenceValue = (valuesNumber) => {
 
 const setVarianciaValue = (XiFi, XiSquareFi, N ) => {
   varianciaDesvioPadraoContainer.style.display = 'block';
+  const varianciaCalcResult = ( (XiSquareFi - ( (XiFi * XiFi) / (N) ) ) / (N - 1) ).toFixed(2);
+
   varianciaOutputCalc.innerHTML = /*html*/`
     <p>
       \\[ s^2 = { { \\sum_{i=1}^k x_i^2 * F_i - ({ { (\\sum_{i=1}^k x_i * F_i)^2 } \\over n}) } \\over n - 1 } \\]
@@ -155,11 +157,25 @@ const setVarianciaValue = (XiFi, XiSquareFi, N ) => {
   </p>
 
   <p>
-    \\[ s^2 = ${( (XiSquareFi - ( (XiFi * XiFi) / (N) ) ) / (N - 1) ).toFixed(2)} \\]
+    \\[ s^2 = ${varianciaCalcResult} \\]
   </p>
 
   `;
 
+  
+  varianciaResult.innerHTML = varianciaCalcResult;
+  
+  const desvioPadraoCalcValue = /*html*/`
+  <p>
+    \\[ \\sqrt{s} \\]
+  </p>
+  <p>
+    \\[ \\sqrt{${varianciaCalcResult}} = ${(Math.sqrt(varianciaCalcResult)).toFixed(2)}  \\]
+  </p>
+  `;
+
+  desvioPadraoCalc.innerHTML = desvioPadraoCalcValue;
+  desvioPadraoResult.innerHTML = (Math.sqrt(varianciaCalcResult)).toFixed(2);
 
   // It should be called for the MathJax reprocess the values after it is inserted in the page
   MathJax.typeset();
@@ -236,11 +252,11 @@ const caculateMediana = (valuesNumber) => {
     const firstNum = valuesNumberTemp[middlePos - 1];
     const secondNum = valuesNumberTemp[middlePos];
     resu = ((firstNum + secondNum) / 2).toFixed(2)
-    mediaValuePos = `${valuesNumberTemp.splice(0, middlePos - 1).join(' ')} | ${firstNum} ${secondNum} | ${valuesNumberTemp.splice(2, valuesNumberTemp.length).join(' ')}`;
+    mediaValuePos = `<p>${valuesNumberTemp.splice(0, middlePos - 1).join(' ')} <b>| ${firstNum} ${secondNum} |</b> ${valuesNumberTemp.splice(2, valuesNumberTemp.length).join(' ')}</p>`;
     calcMediana = `(${firstNum} + ${secondNum}) / 2 = ${resu}`;
   } else {
     resu = valuesNumberTemp[middlePos];
-    mediaValuePos = `${valuesNumberTemp.splice(0, middlePos).join(' ')} | ${resu} | ${valuesNumberTemp.splice(1, valuesNumberTemp.length).join(' ')}`;
+    mediaValuePos = `<p>${valuesNumberTemp.splice(0, middlePos).join(' ')} | ${resu} | ${valuesNumberTemp.splice(1, valuesNumberTemp.length).join(' ')}</p>`;
   }
 
   medianaResult.innerHTML = resu;
