@@ -413,9 +413,6 @@ const getTab2 = () => {
 
   tab2.innerHTML = tab2Tags;
 
-  // It should be called for the MathJax reprocess the values after it is inserted in the page
-  MathJax.typeset();
-
 };
 
 getTab2();

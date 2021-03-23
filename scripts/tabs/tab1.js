@@ -16,7 +16,7 @@ const getTab1 = () => {
 
       <div class="btn-container-click">
         <button class="button-click clear-btn" onclick="onClearValue()">Clear</button>
-        <button class="button-click" onclick="onGetValue()">Calculate Frequence</button>
+        <button class="button-click" onclick="onGetValue()">Calculate</button>
       </div>
     </div>
 
