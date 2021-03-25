@@ -159,84 +159,84 @@ const getTab2 = () => {
           <table>
             <thead>
               <tr>
-                <th class="th-style td-right-border ">Values(x.i)</th> 
-                <th class="th-style td-right-border ">F.i</th> 
-                <th class="th-style td-right-border ">%</th>
-                <th class="th-style td-right-border ">x.i * F.i</th>
+                <th class="th-style  ">Values(x.i)</th> 
+                <th class="th-style  ">F.i</th> 
+                <th class="th-style  ">%</th>
+                <th class="th-style  ">x.i * F.i</th>
                 <th class="th-style">x.i^2 * F.i</th>
               </tr>
             </thead>
             <tbody>
               
           <tr>
-            <td class="td-right-border">15</td>
-            <td class="td-right-border">2</td>
-            <td class="td-right-border">14.29</td>
-            <td class="td-right-border">30</td>
+            <td class="">15</td>
+            <td class="">2</td>
+            <td class="">14.29</td>
+            <td class="">30</td>
             <td>450</td>
           </tr>
           
           <tr>
-            <td class="td-right-border">16</td>
-            <td class="td-right-border">1</td>
-            <td class="td-right-border">7.14</td>
-            <td class="td-right-border">16</td>
+            <td class="">16</td>
+            <td class="">1</td>
+            <td class="">7.14</td>
+            <td class="">16</td>
             <td>256</td>
           </tr>
           
           <tr>
-            <td class="td-right-border">17</td>
-            <td class="td-right-border">2</td>
-            <td class="td-right-border">14.29</td>
-            <td class="td-right-border">34</td>
+            <td class="">17</td>
+            <td class="">2</td>
+            <td class="">14.29</td>
+            <td class="">34</td>
             <td>578</td>
           </tr>
           
           <tr>
-            <td class="td-right-border">18</td>
-            <td class="td-right-border">5</td>
-            <td class="td-right-border">35.71</td>
-            <td class="td-right-border">90</td>
+            <td class="">18</td>
+            <td class="">5</td>
+            <td class="">35.71</td>
+            <td class="">90</td>
             <td>1620</td>
           </tr>
           
           <tr>
-            <td class="td-right-border">19</td>
-            <td class="td-right-border">1</td>
-            <td class="td-right-border">7.14</td>
-            <td class="td-right-border">19</td>
+            <td class="">19</td>
+            <td class="">1</td>
+            <td class="">7.14</td>
+            <td class="">19</td>
             <td>361</td>
           </tr>
           
           <tr>
-            <td class="td-right-border">21</td>
-            <td class="td-right-border">1</td>
-            <td class="td-right-border">7.14</td>
-            <td class="td-right-border">21</td>
+            <td class="">21</td>
+            <td class="">1</td>
+            <td class="">7.14</td>
+            <td class="">21</td>
             <td>441</td>
           </tr>
           
           <tr>
-            <td class="td-right-border">22</td>
-            <td class="td-right-border">1</td>
-            <td class="td-right-border">7.14</td>
-            <td class="td-right-border">22</td>
+            <td class="">22</td>
+            <td class="">1</td>
+            <td class="">7.14</td>
+            <td class="">22</td>
             <td>484</td>
           </tr>
           
           <tr>
-            <td class="td-right-border">41</td>
-            <td class="td-right-border">1</td>
-            <td class="td-right-border">7.14</td>
-            <td class="td-right-border">41</td>
+            <td class="">41</td>
+            <td class="">1</td>
+            <td class="">7.14</td>
+            <td class="">41</td>
             <td>1681</td>
           </tr>
         
             <tr class="total">
-              <td class="td-right-border th-style">TOTAL</td>
-              <td class="td-right-border th-style">14</td>
-              <td class="td-right-border th-style">100.00</td>
-              <td class="td-right-border th-style">273</td>
+              <td class=" th-style">TOTAL</td>
+              <td class=" th-style">14</td>
+              <td class=" th-style">100.00</td>
+              <td class=" th-style">273</td>
               <td class="th-style">5871</td>
             </tr>
           </tbody>                          
@@ -309,38 +309,38 @@ const getTab2 = () => {
           <table>
             <thead>
               <tr>
-                <th class="th-style td-right-border">Classes</th>
+                <th class="th-style ">Classes</th>
                 <th class="th-style">F.i</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td class='td-right-border'>2 &#x022A2; 10</td>
+                <td class=''>2 &#x022A2; 10</td>
                 <td>9</td>
               </tr>
               <tr>
-                <td class='td-right-border'>10 &#x022A2; 18</td>
+                <td class=''>10 &#x022A2; 18</td>
                 <td>6</td>
               </tr>
               <tr>
-                <td class='td-right-border'>18 &#x022A2; 26</td>
+                <td class=''>18 &#x022A2; 26</td>
                 <td>3</td>
               </tr>
               <tr>
-                <td class='td-right-border'>26 &#x022A2; 34</td>
+                <td class=''>26 &#x022A2; 34</td>
                 <td>2</td>
               </tr>
               <tr>
-                <td class='td-right-border'>34 &#x022A2; 42</td>
-                <td>4</td>
+                <td class=''>34 &#x022A2; 42</td>
+                <td>3</td>
               </tr>
               <tr>
-                <td class='td-right-border'>42 &#x022A2; 50</td>
-                <td>3</td>
+                <td class=''>42 &#x022A2; 50</td>
+                <td>4</td>
               </tr>
 
               <tr>
-                <td class="th-style td-right-border"> &#8721; </td>
+                <td class="th-style "> &#8721; </td>
                 <td class="th-style">27</td>
               </tr>
             </tbody>

@@ -77,10 +77,10 @@ const setFrequenceValue = (valueTextArea) => {
         // It is using vs-code extension: es6-string-html
         /*html*/`
         <tr>
-          <td class="td-right-border">${k}</td>
-          <td class="td-right-border">${grouped[k].length}</td>
-          <td class="td-right-border">${resuPerce.toFixed(2)}</td>
-          <td class="td-right-border">${k * grouped[k].length}</td>
+          <td class="">${k}</td>
+          <td class="">${grouped[k].length}</td>
+          <td class="">${resuPerce.toFixed(2)}</td>
+          <td class="">${k * grouped[k].length}</td>
           <td >${(k * k) * grouped[k].length}</td>
         </tr>
         `)
@@ -93,20 +93,20 @@ const setFrequenceValue = (valueTextArea) => {
         <table>
             <thead>
               <tr>
-                <th class="th-style td-right-border ">Values(x.i)</th> 
-                <th class="th-style td-right-border ">F.i</th> 
-                <th class="th-style td-right-border ">%</th>
-                <th class="th-style td-right-border ">x.i * F.i</th>
+                <th class="th-style ">Values(x.i)</th> 
+                <th class="th-style ">F.i</th> 
+                <th class="th-style ">%</th>
+                <th class="th-style ">x.i * F.i</th>
                 <th class="th-style">x.i^2 * F.i</th>
               </tr>
             </thead>
             <tbody>
               ${formatValue.join(" ")}
               <tr class="total">
-                <td class="td-right-border th-style">TOTAL</td>
-                <td class="td-right-border th-style">${valueTextArea.length}</td>
-                <td class="td-right-border th-style">${totalPercentage.toFixed(2)}</td>
-                <td class="td-right-border th-style">${XiFi}</td>
+                <td class="th-style">TOTAL</td>
+                <td class="th-style">${valueTextArea.length}</td>
+                <td class="th-style">${totalPercentage.toFixed(2)}</td>
+                <td class="th-style">${XiFi}</td>
                 <td class="th-style">${XiSquareFi}</td>
               </tr>
             </tbody>                          
@@ -133,7 +133,7 @@ const setClasseFrequenceValue = (valuesNumber) => {
   const N = valuesNumber.length;
   frequenceByClasseContainer.style.display = 'block';
   const intervalClasses = Math.ceil((Xmax - Xmin) / Math.ceil(Math.sqrt(N)));
-
+  const amountOfClass = Math.ceil(Math.sqrt(N));
 
   let temp = Xmin;
   const valuesIntervalClasse = [];
@@ -142,7 +142,7 @@ const setClasseFrequenceValue = (valuesNumber) => {
   let XiSquareFi = 0;
 
   let posFreq = 0;
-  for(let i = 0; i < intervalClasses; i++) {
+  for(let i = 0; i < amountOfClass; i++) {
     let freqClass = 0;
 
     while(posFreq < N) {
@@ -177,19 +177,19 @@ const setClasseFrequenceValue = (valuesNumber) => {
 
     return /*html*/`
     <tr>
-      <td class="td-right-border ">
+      <td class="">
         ${v.value} &#x022A2; ${v.value + intervalClasses}
       </td>
-      <td class="td-right-border ">
+      <td class="">
         ${v.freq}
       </td>
-      <td class="td-right-border ">
+      <td class="">
         ${v.freqPercent}
       </td>
-      <td class="td-right-border ">
+      <td class="">
         ${middlePoint}
       </td>
-      <td class="td-right-border ">
+      <td class="">
         ${tempXiFi}
       </td>
       <td>
@@ -204,22 +204,22 @@ const setClasseFrequenceValue = (valuesNumber) => {
       <table>
         <thead>
           <tr>
-            <th class="th-style td-right-border ">Values</th> 
-            <th class="th-style td-right-border ">F.i</th> 
-            <th class="th-style td-right-border ">%</th>
-            <th class="th-style td-right-border ">Ponto Médio(x.i)</th>
-            <th class="th-style td-right-border ">x.i * F.i</th>
+            <th class="th-style ">Values</th> 
+            <th class="th-style ">F.i</th> 
+            <th class="th-style ">%</th>
+            <th class="th-style ">Ponto Médio(x.i)</th>
+            <th class="th-style ">x.i * F.i</th>
             <th class="th-style">x.i^2 * F.i</th>
           </tr>
         </thead>
         <tbody>
           ${formatValueClasse.join(' ')}
           <tr class="total">
-            <td class="td-right-border th-style">TOTAL</td>
-            <td class="td-right-border th-style">${N}</td>
-            <td class="td-right-border th-style">${totalPercentage.toFixed(2)}</td>
-            <td class="td-right-border th-style"> - </td>
-            <td class="td-right-border th-style">${XiFi}</td>
+            <td class="th-style">TOTAL</td>
+            <td class="th-style">${N}</td>
+            <td class="th-style">${totalPercentage.toFixed(2)}</td>
+            <td class="th-style"> - </td>
+            <td class="th-style">${XiFi}</td>
             <td class="th-style">${XiSquareFi}</td>
           </tr>
         </tbody>
@@ -317,6 +317,10 @@ const onGenerateValues = () => {
     _.times(count, () => values += `${inputyourtext} `);
 
     textOutput.innerHTML = values.trim();
+
+    // Clear inputs fields
+    getInputText.value = '';
+    getInputNumber.value = '';
   }
 
 }

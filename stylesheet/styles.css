@@ -11,6 +11,15 @@ span {
   font-family: roboto;
 }
 
+table {
+  border-collapse: collapse;
+}
+
+td, th {
+  padding: 4px 12px;
+  white-space: nowrap;
+}
+
 body {
   margin: 10px 25px;
   padding-bottom: 25px;
@@ -81,7 +90,7 @@ th {
 
 .container-textarea {
   width: 400px;
-  height: 350px;
+  min-height: 350px;
   min-width: 200px;
 }
 
