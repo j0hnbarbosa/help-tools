@@ -12,7 +12,7 @@ const getTab1 = () => {
   <div class="container">
 
     <div class="container-textarea">
-      <textarea id="text-input" class="text-input-class" onchange="onTextAreaChangeValue">15 15 16 17 17 18 18 18 18 18 19 21 22 41</textarea>
+      <textarea id="text-input" class="text-input-class" onchange="onTextAreaChangeValue"></textarea>
 
       <div class="btn-container-click">
         <button class="button-click clear-btn" onclick="onClearValue()">Clear</button>
