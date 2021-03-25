@@ -302,7 +302,8 @@ const getTab2 = () => {
         <p>\\[ h \\cong {AT \\over c} \\]</p>
         <p>Exemplo: \\[ h \\cong {43 \\over 6} \\]</p>
 
-        <p><b>h</b> = 7</p>
+        <p><b>h</b> = 7.16 (aproxima para cima)</p>
+        <p><b>h</b> = 8</p>
 
         <div class="center-content">
           <table>
@@ -314,37 +315,33 @@ const getTab2 = () => {
             </thead>
             <tbody>
               <tr>
-                <td class='td-right-border'>2 &#x022A2; 9</td>
+                <td class='td-right-border'>2 &#x022A2; 10</td>
+                <td>9</td>
+              </tr>
+              <tr>
+                <td class='td-right-border'>10 &#x022A2; 18</td>
+                <td>6</td>
+              </tr>
+              <tr>
+                <td class='td-right-border'>18 &#x022A2; 26</td>
                 <td>3</td>
               </tr>
               <tr>
-                <td class='td-right-border'>9 &#x022A2; 16</td>
-                <td>12</td>
-              </tr>
-              <tr>
-                <td class='td-right-border'>16 &#x022A2; 23</td>
+                <td class='td-right-border'>26 &#x022A2; 34</td>
                 <td>2</td>
               </tr>
               <tr>
-                <td class='td-right-border'>23 &#x022A2; 30</td>
+                <td class='td-right-border'>34 &#x022A2; 42</td>
                 <td>4</td>
               </tr>
               <tr>
-                <td class='td-right-border'>30 &#x022A2; 37</td>
-                <td>1</td>
-              </tr>
-              <tr>
-                <td class='td-right-border'>37 &#x022A2; 44</td>
-                <td>4</td>
-              </tr>
-              <tr>
-                <td class='td-right-border'>44 &#x022A2; 51</td>
+                <td class='td-right-border'>42 &#x022A2; 50</td>
                 <td>3</td>
               </tr>
 
               <tr>
                 <td class="th-style td-right-border"> &#8721; </td>
-                <td class="th-style">50</td>
+                <td class="th-style">27</td>
               </tr>
             </tbody>
           </table>
@@ -401,6 +398,25 @@ const getTab2 = () => {
 
         <p>
         \\[ { {6.49} \\over 19.50 } * 100 = 33.29\\% \\]
+        </p>
+
+      </div>
+    </div>
+
+    
+    <div class="card-solid mansory-grid">
+      <div>
+        <h2>Ponto Médio De Classe:</h2>
+        <p>
+          É o ponto que divide o intervalo de classe em duas partes iguais. 
+        </p>
+
+        <p>
+          Exemplo: 
+        </p>
+        
+        <p>
+          Em <b>49 |-- 53</b> o ponto médio x3 = (53+49)/2 = 51, ou seja  x3=( l3 + L3 )/2.
         </p>
 
       </div>

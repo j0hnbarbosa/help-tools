@@ -39,13 +39,13 @@ const onGetValue = () => {
       .sortBy()
       .value()
 
-      setFrequenceValue(valueTextArea);
+    setFrequenceValue(valueTextArea);
 
-      if (isOnlyNumber(valueTextArea)) {
-        const orderedValues = _.chain(valueTextArea).map((value) => parseInt(value, 10)).sortBy().value();
-        onCaculateMediaMedianaModa(orderedValues);
-        setClasseFrequenceValue(orderedValues);
-        
+    if (isOnlyNumber(valueTextArea)) {
+      const orderedValues = _.chain(valueTextArea).map((value) => parseInt(value, 10)).sortBy().value();
+      onCaculateMediaMedianaModa(orderedValues);
+      setClasseFrequenceValue(orderedValues);
+
     } else {
       mediaModaMedianaContainer.style.display = 'none'
       frequenceByClasseContainer.style.display = 'none'
@@ -70,8 +70,8 @@ const setFrequenceValue = (valueTextArea) => {
       const resuPerce = ((grouped[k].length / total) * 100);
       totalPercentage += parseFloat(resuPerce, 10);
 
-      XiFi += k * grouped[k].length; 
-      XiSquareFi += (k * k) * grouped[k].length; 
+      XiFi += k * grouped[k].length;
+      XiSquareFi += (k * k) * grouped[k].length;
 
       return (
         // It is using vs-code extension: es6-string-html
@@ -86,41 +86,43 @@ const setFrequenceValue = (valueTextArea) => {
         `)
     }
     )
-    
+
     // It is using vs-code extension: es6-string-html
     const tableFormat = /*html*/`
-      <table>
-          <thead>
-            <tr>
-              <th class="th-style td-right-border ">Values(x.i)</th> 
-              <th class="th-style td-right-border ">F.i</th> 
-              <th class="th-style td-right-border ">%</th>
-              <th class="th-style td-right-border ">x.i * F.i</th>
-              <th class="th-style">x.i^2 * F.i</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${formatValue.join(" ")}
-            <tr class="total">
-              <td class="td-right-border th-style">TOTAL</td>
-              <td class="td-right-border th-style">${valueTextArea.length}</td>
-              <td class="td-right-border th-style">${totalPercentage.toFixed(2)}</td>
-              <td class="td-right-border th-style">${XiFi}</td>
-              <td class="th-style">${XiSquareFi}</td>
-            </tr>
-          </tbody>                          
-      </table>
+      <div class="padding-table">
+        <table>
+            <thead>
+              <tr>
+                <th class="th-style td-right-border ">Values(x.i)</th> 
+                <th class="th-style td-right-border ">F.i</th> 
+                <th class="th-style td-right-border ">%</th>
+                <th class="th-style td-right-border ">x.i * F.i</th>
+                <th class="th-style">x.i^2 * F.i</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${formatValue.join(" ")}
+              <tr class="total">
+                <td class="td-right-border th-style">TOTAL</td>
+                <td class="td-right-border th-style">${valueTextArea.length}</td>
+                <td class="td-right-border th-style">${totalPercentage.toFixed(2)}</td>
+                <td class="td-right-border th-style">${XiFi}</td>
+                <td class="th-style">${XiSquareFi}</td>
+              </tr>
+            </tbody>                          
+        </table>
+      </div>
     `
-    
+
     frequenceContainer.style.display = 'block';
     newValues.innerHTML = tableFormat;
 
 
     if (isOnlyNumber(valueTextArea)) {
       setVarianciaValue(XiFi, XiSquareFi, valueTextArea.length);
-  } else {
-    varianciaDesvioPadraoContainer.style.display = 'none';
-  }
+    } else {
+      varianciaDesvioPadraoContainer.style.display = 'none';
+    }
 
   }
 }
@@ -128,13 +130,136 @@ const setFrequenceValue = (valueTextArea) => {
 const setClasseFrequenceValue = (valuesNumber) => {
   const Xmin = _.head(valuesNumber);
   const Xmax = _.last(valuesNumber);
+  const N = valuesNumber.length;
   frequenceByClasseContainer.style.display = 'block';
-  newValuesClasses.innerHTML = `min: ${Xmin} and max ${Xmax}`;
+  const intervalClasses = Math.ceil((Xmax - Xmin) / Math.ceil(Math.sqrt(N)));
+
+
+  let temp = Xmin;
+  const valuesIntervalClasse = [];
+  let totalPercentage = 0;
+  let XiFi = 0;
+  let XiSquareFi = 0;
+
+  let posFreq = 0;
+  for(let i = 0; i < intervalClasses; i++) {
+    let freqClass = 0;
+
+    while(posFreq < N) {
+      if(valuesNumber[posFreq] < temp + intervalClasses) {
+        freqClass += 1;
+      } else {
+        break;
+      }
+      posFreq += 1;
+    }
+
+    let resuPerce = freqClass > 0 ? (freqClass / N * 100) : 0;
+    totalPercentage += parseFloat(resuPerce, 10);
+
+    valuesIntervalClasse.push({ value: temp, freq: freqClass, freqPercent: resuPerce.toFixed(2)})
+    temp = temp + intervalClasses;
+
+    if(temp > Xmax) {
+      break
+    }
+  }
+
+
+
+  const formatValueClasse = _.map(valuesIntervalClasse, (v) => {
+    let middlePoint = Math.round( ( (v.value * 2) + intervalClasses) / 2);
+    const tempXiFi = middlePoint * v.freq;
+    const tempXiSquareFi = middlePoint * middlePoint * v.freq;
+
+    XiFi += tempXiFi;
+    XiSquareFi = tempXiSquareFi;
+
+    return /*html*/`
+    <tr>
+      <td class="td-right-border ">
+        ${v.value} &#x022A2; ${v.value + intervalClasses}
+      </td>
+      <td class="td-right-border ">
+        ${v.freq}
+      </td>
+      <td class="td-right-border ">
+        ${v.freqPercent}
+      </td>
+      <td class="td-right-border ">
+        ${middlePoint}
+      </td>
+      <td class="td-right-border ">
+        ${tempXiFi}
+      </td>
+      <td>
+        ${tempXiSquareFi}
+      </td>
+    </tr>
+
+  `});
+
+  const formatTableClasses = /*html*/`
+    <div class="padding-table">
+      <table>
+        <thead>
+          <tr>
+            <th class="th-style td-right-border ">Values</th> 
+            <th class="th-style td-right-border ">F.i</th> 
+            <th class="th-style td-right-border ">%</th>
+            <th class="th-style td-right-border ">Ponto Médio(x.i)</th>
+            <th class="th-style td-right-border ">x.i * F.i</th>
+            <th class="th-style">x.i^2 * F.i</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${formatValueClasse.join(' ')}
+          <tr class="total">
+            <td class="td-right-border th-style">TOTAL</td>
+            <td class="td-right-border th-style">${N}</td>
+            <td class="td-right-border th-style">${totalPercentage.toFixed(2)}</td>
+            <td class="td-right-border th-style"> - </td>
+            <td class="td-right-border th-style">${XiFi}</td>
+            <td class="th-style">${XiSquareFi}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  `;
+
+  const formatClasseFrequence = /*html*/`
+    <p><b>Values:</b> ${valuesNumber.join(' ')}</p>
+    <p><b>AT</b> = Xmax − Xmin</p>
+    <p><b>AT</b> = ${Xmax} − ${Xmin}</p>
+    <p><b>AT</b> = ${Xmax - Xmin}</p>
+
+    <p>\\[ c = \\sqrt{N} \\]</p>
+    <p>\\[ c = \\sqrt{ ${N} } \\]</p>
+    <p><b>c</b> = ${Math.sqrt(N).toFixed(2)}  (aproxima para cima)</p>
+    <p><b>c</b> = ${Math.ceil(Math.sqrt(N))} </p>
+
+    <br />
+
+    <p>\\[ h \\cong { {AT} \\over c } \\]</p>
+    <p>\\[h \\cong { { ${Xmax - Xmin} } \\over ${Math.ceil(Math.sqrt(N))} } \\]</p>
+    <p><b>h</b> &#8773; ${((Xmax - Xmin) / Math.ceil(Math.sqrt(N))).toFixed(2)}  (aproxima para cima)</p>
+    <p><b>h</b> &#8773; ${intervalClasses}</p>
+
+    ${formatTableClasses}
+
+  `
+
+
+  newValuesClasses.innerHTML = formatClasseFrequence;
+
+
+  // It should be called for the MathJax reprocess the values after it is inserted in the page
+  MathJax.typeset();
 };
 
-const setVarianciaValue = (XiFi, XiSquareFi, N ) => {
+const setVarianciaValue = (XiFi, XiSquareFi, N) => {
   varianciaDesvioPadraoContainer.style.display = 'block';
-  const varianciaCalcResult = ( (XiSquareFi - ( (XiFi * XiFi) / (N) ) ) / (N - 1) ).toFixed(2);
+  const varianciaCalcResult = ((XiSquareFi - ((XiFi * XiFi) / (N))) / (N - 1)).toFixed(2);
 
   varianciaOutputCalc.innerHTML = /*html*/`
     <p>
@@ -162,9 +287,9 @@ const setVarianciaValue = (XiFi, XiSquareFi, N ) => {
 
   `;
 
-  
+
   varianciaResult.innerHTML = varianciaCalcResult;
-  
+
   const desvioPadraoCalcValue = /*html*/`
   <p>
     \\[ \\sqrt{s} \\]
@@ -221,7 +346,7 @@ const caculateModa = (valuesNumber) => {
   });
 
   if (!_.isEmpty(mostFrequent)) {
-    tableModaResult.innerHTML = 
+    tableModaResult.innerHTML =
     /*html*/`
       <tr>
         <th>Value</th><th>Freq</th>
@@ -266,11 +391,11 @@ const caculateMediana = (valuesNumber) => {
 };
 
 const onCaculateMediaMedianaModa = (valuesNumber) => {
-    mediaModaMedianaContainer.style.display = 'block'
+  mediaModaMedianaContainer.style.display = 'block'
 
-    calculateMedia(valuesNumber);
-    caculateModa(valuesNumber);
-    caculateMediana(valuesNumber);
+  calculateMedia(valuesNumber);
+  caculateModa(valuesNumber);
+  caculateMediana(valuesNumber);
 
 
 };

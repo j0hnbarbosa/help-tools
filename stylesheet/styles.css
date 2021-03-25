@@ -90,10 +90,6 @@ th {
   justify-content: flex-end;
 }
 
-#new-values {
-  padding: 25px;
-}
-
 .container {
   display: flex;
   margin-bottom: 120px;
@@ -289,4 +285,8 @@ th {
 
 .container-results {
   max-width: 600px;
+}
+
+.padding-table {
+  padding: 25px;
 }
