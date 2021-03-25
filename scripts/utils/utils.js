@@ -80,8 +80,8 @@ const setFrequenceValue = (valueTextArea) => {
           <td class="">${k}</td>
           <td class="">${grouped[k].length}</td>
           <td class="">${resuPerce.toFixed(2)}</td>
-          <td class="">${k * grouped[k].length}</td>
-          <td >${(k * k) * grouped[k].length}</td>
+          <td class="">${(k * grouped[k].length).toFixed(2)}</td>
+          <td >${((k * k) * grouped[k].length).toFixed(2)}</td>
         </tr>
         `)
     }
@@ -106,8 +106,8 @@ const setFrequenceValue = (valueTextArea) => {
                 <td class="th-style">TOTAL</td>
                 <td class="th-style">${valueTextArea.length}</td>
                 <td class="th-style">${totalPercentage.toFixed(2)}</td>
-                <td class="th-style">${XiFi}</td>
-                <td class="th-style">${XiSquareFi}</td>
+                <td class="th-style">${XiFi.toFixed(2)}</td>
+                <td class="th-style">${XiSquareFi.toFixed(2)}</td>
               </tr>
             </tbody>                          
         </table>
@@ -165,8 +165,6 @@ const setClasseFrequenceValue = (valuesNumber) => {
     }
   }
 
-
-
   const formatValueClasse = _.map(valuesIntervalClasse, (v) => {
     let middlePoint = Math.round( ( (v.value * 2) + intervalClasses) / 2);
     const tempXiFi = middlePoint * v.freq;
@@ -187,13 +185,13 @@ const setClasseFrequenceValue = (valuesNumber) => {
         ${v.freqPercent}
       </td>
       <td class="">
-        ${middlePoint}
+        ${middlePoint.toFixed(2)}
       </td>
       <td class="">
-        ${tempXiFi}
+        ${tempXiFi.toFixed(2)}
       </td>
       <td>
-        ${tempXiSquareFi}
+        ${tempXiSquareFi.toFixed(2)}
       </td>
     </tr>
 
@@ -219,8 +217,8 @@ const setClasseFrequenceValue = (valuesNumber) => {
             <td class="th-style">${N}</td>
             <td class="th-style">${totalPercentage.toFixed(2)}</td>
             <td class="th-style"> - </td>
-            <td class="th-style">${XiFi}</td>
-            <td class="th-style">${XiSquareFi}</td>
+            <td class="th-style">${XiFi.toFixed(2)}</td>
+            <td class="th-style">${XiSquareFi.toFixed(2)}</td>
           </tr>
         </tbody>
       </table>
