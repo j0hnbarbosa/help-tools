@@ -128,6 +128,7 @@ const setFrequenceValue = (valueTextArea) => {
 }
 
 const setClasseFrequenceValue = (valuesNumber) => {
+  
   const Xmin = _.head(valuesNumber);
   const Xmax = _.last(valuesNumber);
   const N = valuesNumber.length;
@@ -164,6 +165,12 @@ const setClasseFrequenceValue = (valuesNumber) => {
       break
     }
   }
+
+  // Used to set the values to the graph
+  const histogramData = _.map(valuesNumber, (v) => ({ valueClass: v }));
+  debugger
+  const intervalValues = _.map(valuesIntervalClasse, (v) => [v.value, v.value + intervalClasses]);
+  agCharts.AgChart.create(onOptionsHistogramGraph(histogramData, intervalValues));
 
   const formatValueClasse = _.map(valuesIntervalClasse, (v) => {
     let middlePoint = Math.round( ( (v.value * 2) + intervalClasses) / 2);
@@ -411,4 +418,41 @@ const onAddToTextArea = () => {
   }
 
 }
+
+
+const onOptionsHistogramGraph = (histogramData, intervalValues) => {
+  debugger
+  return {
+    container: document.getElementById('grafico-histograma'),
+    title: {
+      text: 'Race demographics',
+    },
+    data: histogramData,
+    series: [
+      {
+        type: 'histogram',
+        xKey: 'valueClass',
+        xName: 'Values ',
+        areaPlot: true,
+        bins: intervalValues,
+      },
+    ],
+    legend: {
+      enabled: false,
+    },
+    axes: [
+      {
+        type: 'number',
+        position: 'bottom',
+        title: { text: 'Values intervalo' },
+      },
+      {
+        type: 'number',
+        position: 'left',
+        title: { text: 'Number of participants' },
+      },
+    ],
+  };
+
+};
 

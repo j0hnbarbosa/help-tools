@@ -116,6 +116,13 @@ const getTab1 = () => {
       </div>
 
     </div>
+
+
+    <div class="card-solid margin-top margin-bottom">
+      <h3>Gráfico Histograma:</h3>
+      <div id='grafico-histograma' style="height: 100%;"></div>
+    </div>
+
   </div>
 
 </div>
