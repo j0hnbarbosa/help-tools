@@ -116,6 +116,13 @@ const getTab1 = () => {
       </div>
 
     </div>
+
+
+    <div id="grafico-coluna-container" class="card-solid margin-top margin-bottom" style="display: none;">
+      <h3>Gráfico Coluna:</h3>
+      <div id='grafico-coluna-result' style="height: 100%;"></div>
+    </div>
+
   </div>
 
 </div>

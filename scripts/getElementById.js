@@ -24,4 +24,7 @@ const varianciaResult = document.getElementById('variancia-result');
 const desvioPadraoCalc = document.getElementById('desvio-padrao-calc');
 const desvioPadraoResult = document.getElementById('desvio-padrao-result');
 
+const graficoColunaResult = document.getElementById('grafico-coluna-result');
+const graficoColunaContainer = document.getElementById('grafico-coluna-container');
+
 

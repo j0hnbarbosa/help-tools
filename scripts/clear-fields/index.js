@@ -19,4 +19,7 @@ const onClearValue = () => {
   frequenceContainer.style.display = 'none';
   frequenceByClasseContainer.style.display = 'none';
   varianciaDesvioPadraoContainer.style.display = 'none';
+
+  graficoColunaResult.innerHTML = ''
+  graficoColunaContainer.style.display = 'none'
 }

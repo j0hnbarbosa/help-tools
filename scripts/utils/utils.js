@@ -120,6 +120,9 @@ const setFrequenceValue = (valueTextArea) => {
 
     if (isOnlyNumber(valueTextArea)) {
       setVarianciaValue(XiFi, XiSquareFi, valueTextArea.length);
+      
+      const valuesToGraph = _.map(keys, (k) => ({ valuesX: `${k}`, Frequencia: grouped[k].length }));
+      setGraphValue(valuesToGraph);
     } else {
       varianciaDesvioPadraoContainer.style.display = 'none';
     }
@@ -127,7 +130,16 @@ const setFrequenceValue = (valueTextArea) => {
   }
 }
 
+const setGraphValue = (valuesToGraph) => {
+  // Used to set the values to the graph
+
+  graficoColunaResult.innerHTML = ''
+  graficoColunaContainer.style.display = 'block';
+  agCharts.AgChart.create(onOptionsHistogramGraph(valuesToGraph));
+}
+
 const setClasseFrequenceValue = (valuesNumber) => {
+
   const Xmin = _.head(valuesNumber);
   const Xmax = _.last(valuesNumber);
   const N = valuesNumber.length;
@@ -142,11 +154,11 @@ const setClasseFrequenceValue = (valuesNumber) => {
   let XiSquareFi = 0;
 
   let posFreq = 0;
-  for(let i = 0; i < amountOfClass; i++) {
+  for (let i = 0; i < amountOfClass; i++) {
     let freqClass = 0;
 
-    while(posFreq < N) {
-      if(valuesNumber[posFreq] < temp + intervalClasses) {
+    while (posFreq < N) {
+      if (valuesNumber[posFreq] < temp + intervalClasses) {
         freqClass += 1;
       } else {
         break;
@@ -157,16 +169,16 @@ const setClasseFrequenceValue = (valuesNumber) => {
     let resuPerce = freqClass > 0 ? (freqClass / N * 100) : 0;
     totalPercentage += parseFloat(resuPerce, 10);
 
-    valuesIntervalClasse.push({ value: temp, freq: freqClass, freqPercent: resuPerce.toFixed(2)})
+    valuesIntervalClasse.push({ value: temp, freq: freqClass, freqPercent: resuPerce.toFixed(2) })
     temp = temp + intervalClasses;
 
-    if(temp > Xmax) {
+    if (temp > Xmax) {
       break
     }
   }
 
   const formatValueClasse = _.map(valuesIntervalClasse, (v) => {
-    let middlePoint = Math.round( ( (v.value * 2) + intervalClasses) / 2);
+    let middlePoint = Math.round(((v.value * 2) + intervalClasses) / 2);
     const tempXiFi = middlePoint * v.freq;
     const tempXiSquareFi = middlePoint * middlePoint * v.freq;
 
@@ -411,4 +423,24 @@ const onAddToTextArea = () => {
   }
 
 }
+
+
+const onOptionsHistogramGraph = (histogramData) => {
+  return {
+    container: graficoColunaResult,
+    title: {
+      text: 'Informações dos Dados',
+    },
+    data: histogramData,
+    series: [
+      {
+        type: 'column',
+        xKey: 'valuesX',
+        yKeys: ['Frequencia'],
+        grouped: true
+      },
+    ],
+  };
+
+};
 
