@@ -118,9 +118,9 @@ const getTab1 = () => {
     </div>
 
 
-    <div class="card-solid margin-top margin-bottom">
-      <h3>Gráfico Histograma:</h3>
-      <div id='grafico-histograma' style="height: 100%;"></div>
+    <div id="grafico-coluna-container" class="card-solid margin-top margin-bottom" style="display: none;">
+      <h3>Gráfico Coluna:</h3>
+      <div id='grafico-coluna-result' style="height: 100%;"></div>
     </div>
 
   </div>
