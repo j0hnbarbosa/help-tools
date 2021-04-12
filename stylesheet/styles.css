@@ -86,6 +86,7 @@ th {
   width: 100%;
   outline: none;
   border: 1px solid #CECECE;
+  padding: 10px;
 }
 
 .container-textarea {

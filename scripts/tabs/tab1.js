@@ -12,7 +12,7 @@ const getTab1 = () => {
   <div class="container">
 
     <div class="container-textarea">
-      <textarea id="text-input" class="text-input-class" onchange="onTextAreaChangeValue"></textarea>
+      <textarea id="text-input" class="text-input-class" onchange="onTextAreaChangeValue" placeholder="Enter a set of numbers separated by space or comma. \nEx. 45 75 12 98 45 OR 12,8,89,45"></textarea>
 
       <div class="btn-container-click">
         <button class="button-click clear-btn" onclick="onClearValue()">Clear</button>
