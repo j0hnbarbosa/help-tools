@@ -93,6 +93,7 @@ th {
   width: 400px;
   min-height: 350px;
   min-width: 200px;
+  margin-right: 10px;
 }
 
 .btn-container-click {
