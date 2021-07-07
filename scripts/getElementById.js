@@ -27,4 +27,8 @@ const desvioPadraoResult = document.getElementById('desvio-padrao-result');
 const graficoColunaResult = document.getElementById('grafico-coluna-result');
 const graficoColunaContainer = document.getElementById('grafico-coluna-container');
 
+const textInputUrl = document.getElementById('text-input-url');
+const numberInputUrl = document.getElementById('number-input-url');
+const openedTabsUrl = document.getElementById('openedTabsUrl');
+
 

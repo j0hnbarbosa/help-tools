@@ -1,4 +1,30 @@
 const WARNIG_TEXT = 'Enter some values in the inputs and press GENERATE';
+let count = 1;
+let MAX = 10;
+let id = null;
+
+const generateUrl = () => {
+  console.log(textInputUrl.value);
+  console.log(numberInputUrl.value);
+  const URL = textInputUrl.value;
+  MAX = numberInputUrl.value;
+
+  id = setInterval(() => {
+    if (count <= parseInt(MAX, 10)) {
+      // open in a new tab
+      openedTabsUrl.innerHTML = `Abas abertas ${count}`;
+      window.open(URL, '_blank');
+
+      // open in a new window
+      // window.open(URL, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+      count += 1;
+    } else {
+      clearInterval(id);
+      count = 1;
+    }
+  }, 900);
+
+}
 
 const textIsEmpty = () => {
   if (!_.isEmpty(textOutput.innerHTML) && textOutput.innerHTML !== WARNIG_TEXT) {
