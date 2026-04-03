@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model House</title>
+    <style>
+        /* Reseta as margens padrão do body para não criar barras de rolagem */
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden; 
+        }
+
+        /* Estilo da barra flutuante discreta */
+        .controls-container {
+            position: absolute;
+            bottom: 30px; /* Fixa na parte inferior da tela */
+            left: 50%;
+            transform: translateX(-50%); /* Centraliza perfeitamente */
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.85); /* Fundo branco semi-transparente */
+            backdrop-filter: blur(8px); /* Efeito de vidro desfocado */
+            padding: 12px 24px;
+            border-radius: 50px; /* Bordas arredondadas estilo "pílula" */
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15); /* Sombra suave para destacar do fundo */
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Roboto', Arial, sans-serif;
+        }
+
+        .controls-container label {
+            font-size: 15px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        /* Estilizando o menu dropdown */
+        .controls-container select {
+            padding: 8px 30px 8px 12px;
+            font-size: 14px;
+            color: #333;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: white;
+            cursor: pointer;
+            outline: none;
+            appearance: auto; 
+            transition: all 0.2s ease;
+        }
+
+        .controls-container select:hover {
+            border-color: #888;
+        }
+        
+        .controls-container select:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+        }
+    </style>
+</head>
+
+<body>
+
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
+
+    <div class="controls-container">
+        <label for="model-selector">Visualizar Parte:</label>
+        <select id="model-selector" onchange="switchModel(this.value)">
+            <option value="house_walls.glb">Casa Padrão</option>
+            <option value="house_walls-water-box-base-only.glb">Base da Caixa d'Água</option>
+            <option value="house_walls-water.glb">Casa com Caixa d'Água</option>
+            <option value="house_walls-energy-points.glb">Casa com Pontos de Energia</option>
+        </select>
+        </select>
+    </div>
+
+    <model-viewer id="viewer" src="house_walls.glb" camera-controls auto-rotate style="width: 100vw; height: 100vh; background-color: darkseagreen; outline: none;"></model-viewer>
+
+    <script>
+        function switchModel(modelPath) {
+            const viewer = document.getElementById('viewer');
+            viewer.src = modelPath;
+        }
+    </script>
+
+</body>
+
+</html>

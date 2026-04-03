@@ -15,14 +15,13 @@ table {
   border-collapse: collapse;
 }
 
-td, th {
+td,
+th {
   padding: 4px 12px;
   white-space: nowrap;
 }
 
 body {
-  margin: 10px 25px;
-  padding-bottom: 25px;
   background: #FAFAFA;
 }
 
@@ -257,7 +256,7 @@ th {
   break-inside: avoid;
 }
 
-.mansory-grid > div {
+.mansory-grid>div {
   grid-row: 1 / -1;
   grid-column: 1;
 }
